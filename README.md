@@ -1,23 +1,15 @@
-# 🎯 hermes-agent-skills
+# hermes-agent-skills
 
-> **深度适配 Hermes Agent 的开箱即用技能集 — 自进化 · 身份感知 · 命令体系原生集成**
+**Production-grade skills for [Hermes Agent](https://github.com/NousResearch/hermes-agent).**  
+深度适配 Hermes Agent 的开箱即用技能集——自进化、身份感知、斜杠命令原生集成。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/)
-[![Hermes Agent](https://img.shields.io/badge/Hermes-Agent-8A2BE2.svg)](https://github.com/NousResearch/hermes-agent)
-[![Agent Skills Standard](https://img.shields.io/badge/Agent_Skills-Open_Standard-orange.svg)](https://github.com/addyosmani/agent-skills)
-
-为 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 量身定制的生产级技能集合。每个技能都是经过实战验证的工作流，融入了 Hermes Agent 的三大核心优势：
-
-| 特性 | 说明 |
-|------|------|
-| 🔗 **命令体系集成** | 与 Hermes 的 `/skills`、`/curator`、`/skill` 等斜杠命令深度结合 |
-| 🧬 **自进化机制** | 技能内置学习循环，可被 Hermes 的 curator 系统自动优化 |
-| 🎭 **身份感知** | 读取 `SOUL.md` 文件，根据 Agent 人设动态调整代码风格和语气 |
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-green)](https://www.python.org/)
+[![Hermes Agent](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
+[![Agent Skills](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
+[![Tests](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen)](tests/)
 
 ---
-
-## 📦 技能矩阵（8 大技能）
 
 ```
   DEFINE           BUILD          VERIFY           SHIP           EVOLVE
@@ -27,115 +19,75 @@
  └────────┘     └────────┘     └─────────┘     └────────┘     └──────────┘
 ```
 
-| 阶段 | 技能 | 一句话描述 | Hermes 独有特性 |
-|------|------|-----------|----------------|
-| 🎯 定义 | `requirement-analyzer` | 五轮结构化对话，澄清模糊需求至 95% 清晰度 | 持久记忆跨会话保持上下文 |
-| 📐 规格 | `spec-driven-dev` | 七要素 PRD/Spec 文档，代码先行 | `/skills` 串联形成流水线 |
-| 🔨 构建 | `test-driven-dev` | RED-GREEN-REFACTOR + 测试金字塔 | `delegate_task` 并行测试执行 |
-| 🔍 验证 | `debugger-coordinator` | 五步调试法 + 多模态工具矩阵 | `browser` + `terminal` + `vision` 联动 |
-| 🛡️ 评审 | `code-quality-guardian` | 六轴质量门禁（安全/复杂度/风格/覆盖/文档/依赖） | `patch` 自动修复 + `/curator` 质量追踪 |
-| 🚀 交付 | `cicd-orchestrator` | GitHub Actions 流水线生成与优化 | `cronjob` 定时流水线 + `webhook` 触发 |
-| 🧬 进化 | `skill-curator` | 四阶段策展流程，技能自我优化 | 直接对接 Hermes 的 curator 自学习循环 |
-| 🎭 身份 | `persona-aware-coding` | SOUL.md 驱动全流程代码风格适配 | 原生身份系统，代码 "像这个人写的" |
+## Features · 特性
 
----
+- **Self-evolving** · 自进化 — skills are not static; the built-in `EvolutionEngine` scores health across 5 dimensions, detects staleness, and proposes improvements that feed directly into Hermes's `/curator` learning loop.
+- **Persona-aware** · 身份感知 — reads `SOUL.md` to dynamically adapt code style, comment density, naming conventions, and architectural decisions to match the agent's defined persona.
+- **Hermes-native** · 命令体系集成 — every skill references Hermes-specific tools (`/skills`, `delegate_task`, `browser`+`terminal`+`vision` coordination, persistent memory) rather than generic instructions.
+- **Open standard** · 开放标准 — all `SKILL.md` files follow the [Agent Skills specification](https://github.com/addyosmani/agent-skills), verified by the bundled `SkillValidator`.
 
-## 🚀 快速安装
+## Quick Start · 快速开始
 
-### 方式一：通过 Hermes skills 命令（推荐）
+**Install via `hermes skills tap` (recommended · 推荐):**
 
 ```bash
-# 添加本仓库为技能源
 hermes skills tap add Ow1onp/hermes-agent-skills
-
-# 浏览并安装技能
 hermes skills browse
 hermes skills install requirement-analyzer
 ```
 
-### 方式二：本地克隆
+**Clone & copy locally · 本地克隆:**
 
 ```bash
 git clone https://github.com/Ow1onp/hermes-agent-skills.git
-cd hermes-agent-skills
-
-# 将所有技能复制到 Hermes 技能目录
-cp -r skills/* ~/.hermes/skills/
-
-# 或安装 Python 工具链
-pip install -e ".[dev]"
+cp -r hermes-agent-skills/skills/* ~/.hermes/skills/
 ```
 
-### 方式三：直接加载单个技能
+**Load a skill in-session · 会话中加载:**
 
 ```bash
-# 在 Hermes 会话中直接加载
 /skill requirement-analyzer
 /skill test-driven-dev
 /skill code-quality-guardian
 ```
 
----
+## Skills · 技能列表
 
-## 📖 使用示例
+| Skill · 技能 | Phase · 阶段 | What it does · 职责 | Hermes-specific · 独有特性 |
+|---|---|---|---|
+| `requirement-analyzer` | Define · 定义 | Five-round structured dialogue to extract true requirements | Persistent memory across sessions |
+| `spec-driven-dev` | Define · 规格 | Seven-section PRD/Spec before any implementation code | `/skills` pipeline chaining |
+| `test-driven-dev` | Build · 构建 | Strict RED-GREEN-REFACTOR with test pyramid (80/15/5) | `delegate_task` parallel test execution |
+| `debugger-coordinator` | Verify · 验证 | Five-step debugging using multi-modal tool matrix | `browser` + `terminal` + `vision` coordination |
+| `code-quality-guardian` | Verify · 评审 | Six-axis quality gate (security/complexity/style/coverage/docs/deps) | Auto-fix via `patch` + `/curator` tracking |
+| `cicd-orchestrator` | Ship · 交付 | GitHub Actions workflow generation & optimization | `cronjob` scheduled pipelines + `webhook` triggers |
+| `skill-curator` | Evolve · 进化 | Four-phase curation: collect → analyze → propose → execute | Direct `/curator` integration |
+| `persona-aware-coding` | Evolve · 身份 | SOUL.md-driven full-stack style adaptation | Native identity system |
 
-### 从需求到部署的完整流水线
+## Hermes Integration · 深度适配
 
-```bash
-# Step 1: 澄清需求
-/skill requirement-analyzer
-# → Hermes 进行 5 轮结构化对话，明确需求边界
+Three capabilities that set these skills apart from generic agent-skills:
 
-# Step 2: 撰写规格
-/skill spec-driven-dev
-# → 生成包含 API 契约、数据模型、测试策略的 Spec 文档
+**1. Self-evolution loop · 自进化闭环**
 
-# Step 3: TDD 开发
-/skill test-driven-dev
-# → RED → GREEN → REFACTOR 循环，测试先行
+```python
+from hermes_agent_skills import EvolutionEngine
 
-# Step 4: 质量门禁
-/skill code-quality-guardian
-# → 六轴审查，拦截低质量代码
-
-# Step 5: CI/CD 部署
-/skill cicd-orchestrator
-# → 生成 GitHub Actions workflow，自动化部署
-
-# Step 6: 自我进化
-/skill skill-curator
-# → 分析执行记录，提出技能优化建议
+engine = EvolutionEngine()
+engine.record_task(TaskExecutionRecord(
+    task_description="Fix login timeout bug",
+    skills_used=["debugger-coordinator", "test-driven-dev"],
+    retries=2, user_corrections=1, success=True, duration_seconds=300,
+))
+suggestions = engine.analyze()
+# → [{action: "create", reason: "3+ similar timeout bugs detected, consider a skill"}]
 ```
 
----
-
-## 🧬 自进化机制详解
-
-hermes-agent-skills 不仅仅是一组静态的技能文件——它们被设计为 **可自我优化的活文档**：
-
-```
-执行任务 → 记录指标 → curator 分析 → 发现改进点 → 更新技能 → 下次更好
-    ↑                                                            │
-    └──────────────── 正反馈循环 ─────────────────────────────────┘
-```
-
-1. **使用追踪**：每次技能被调用，记录成功率、用户纠正次数、耗时
-2. **健康评分**：五维度评估（使用频率/成功率/纠正数/时效性/命令有效性）
-3. **自动建议**：识别过时技能、建议合并重复、发现工作流盲区
-4. **持续改进**：通过 Hermes 的 `/curator` 系统自动应用低风险更新
-
----
-
-## 🎭 身份感知（SOUL.md）
-
-定义你的 Agent 人设，所有技能自动适配风格：
+**2. Persona-aware adaptation · SOUL.md 身份感知**
 
 ```yaml
 # ~/.hermes/SOUL.md
 name: "严谨架构师"
-traits:
-  - 类型安全至上
-  - 显式优于隐式
 coding_style:
   naming: snake_case
   prefer: [type_hints, custom_exceptions, immutability]
@@ -143,134 +95,48 @@ comment_style: "代码即文档"
 architecture_preference: "六边形架构"
 ```
 
-加载 `persona-aware-coding` 后，所有代码、注释、文档都会自动适配这个人设风格。
+Load `persona-aware-coding` — all generated code, comments, and docs automatically adopt this style.
 
----
-
-## 🧪 测试
+**3. Slash-command native · 斜杠命令体系**
 
 ```bash
-# 安装开发依赖
-pip install -e ".[dev]"
-
-# 运行全部测试
-pytest tests/ -v
-
-# 运行特定模块测试
-pytest tests/test_validator.py -v
-pytest tests/test_soul_reader.py -v
-pytest tests/test_evolution.py -v
-
-# 验证所有 SKILL.md 合法性
-pytest tests/test_validator.py::test_validate_directory -v
+/skill requirement-analyzer      # Load a skill
+/curator status                  # Check skill health
+/curator run                     # Trigger self-evolution review
+hermes skills tap add Ow1onp/hermes-agent-skills  # Add skill source
 ```
 
----
-
-## 🐍 Python API
+## Python API
 
 ```python
-from hermes_agent_skills import (
-    SkillValidator,      # SKILL.md 验证器
-    SoulReader,          # SOUL.md 解析器
-    EvolutionEngine,     # 自进化引擎
-)
+from hermes_agent_skills import SkillValidator, SoulReader, EvolutionEngine
 
-# 验证技能文件
+# Validate SKILL.md files
 validator = SkillValidator(strict=False)
-result = validator.validate_file("skills/build/test-driven-dev/SKILL.md")
-print(result.summary())
+result = validator.validate_directory("skills/")
+print(result[0].summary())  # [VALID] skills/build/test-driven-dev/SKILL.md
 
-# 读取 Agent 人设
-reader = SoulReader()
-profile = reader.read("~/.hermes/SOUL.md")
-print(f"命名风格: {profile.naming_convention}")
-print(f"注释密度: {profile.comment_density}")
-
-# 自进化分析
-engine = EvolutionEngine()
-engine.record_task(TaskExecutionRecord(
-    task_description="修复登录 bug",
-    skills_used=["test-driven-dev", "debugger-coordinator"],
-    retries=2,
-    success=True,
-    duration_seconds=300,
-))
-suggestions = engine.analyze()
-for s in suggestions:
-    print(f"[{s.priority}] {s.action}: {s.reason}")
+# Read agent persona
+profile = SoulReader().read("~/.hermes/SOUL.md")
+print(profile.naming_convention)  # snake_case
+print(profile.get_code_prompt_hint())
 ```
 
----
+## Contributing · 贡献指南
 
-## 📁 项目结构
-
-```
-hermes-agent-skills/
-├── skills/                       # 技能文件（Agent Skills 开放标准）
-│   ├── define/                   # 定义阶段
-│   │   ├── requirement-analyzer/SKILL.md
-│   │   └── spec-driven-dev/SKILL.md
-│   ├── build/                    # 构建阶段
-│   │   └── test-driven-dev/SKILL.md
-│   ├── verify/                   # 验证阶段
-│   │   ├── debugger-coordinator/SKILL.md
-│   │   └── code-quality-guardian/SKILL.md
-│   ├── ship/                     # 交付阶段
-│   │   └── cicd-orchestrator/SKILL.md
-│   └── evolve/                   # 进化阶段
-│       ├── skill-curator/SKILL.md
-│       └── persona-aware-coding/SKILL.md
-├── src/hermes_agent_skills/      # Python 核心库
-│   ├── __init__.py
-│   ├── validator.py              # SKILL.md 验证器
-│   ├── evolution.py              # 自进化引擎
-│   └── soul_reader.py            # SOUL.md 解析器
-├── tests/                        # 单元测试
-├── scripts/                      # 安装 & 工具脚本
-├── .github/workflows/            # CI/CD
-├── pyproject.toml                # Python 项目配置
-└── README.md                     # 你在这 👋
-```
-
----
-
-## 🤝 贡献
-
-欢迎贡献！请遵循 [Agent Skills 开放标准](https://github.com/addyosmani/agent-skills)。
+Skills are plain Markdown — contributions welcome.  
+技能文件采用纯 Markdown 格式，欢迎贡献。
 
 ```bash
-# 1. Fork 本仓库
-# 2. 创建你的特性分支
-git checkout -b feat/my-awesome-skill
-
-# 3. 创建技能文件
-mkdir -p skills/<phase>/<skill-name>/
-# 编写 SKILL.md（参考已有技能格式）
-
-# 4. 验证技能合法性
-pytest tests/test_validator.py -v
-
-# 5. 提交 PR
-git commit -m "feat: add <skill-name> skill"
+git clone https://github.com/Ow1onp/hermes-agent-skills.git
+# Create your skill under skills/<phase>/<name>/SKILL.md
+# Validate: pytest tests/test_validator.py -v
+# Open a PR
 ```
 
-### 社区承诺
+- Issues responded within 24h · Issue 24 小时内回复
+- PRs reviewed within 48h · PR 48 小时内完成 Review
 
-- 🕐 **Issues 响应**：24 小时内回复
-- 📝 **PR 审查**：48 小时内完成 Code Review
-- 📢 **社区讨论**：[GitHub Discussions](https://github.com/Ow1onp/hermes-agent-skills/discussions)
+## License · 协议
 
----
-
-## 📄 许可证
-
-MIT © 2026 [Ow1onp](https://github.com/Ow1onp)
-
----
-
-## 🔗 参考
-
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) — Nous Research 的开源 AI Agent 框架
-- [Agent Skills](https://github.com/addyosmani/agent-skills) — Addy Osmani 的 Agent Skills 开放标准
-- [Hermes Agent 文档](https://hermes-agent.nousresearch.com/docs/)
+MIT © [Ow1onp](https://github.com/Ow1onp)
