@@ -4,6 +4,11 @@
 
 [中文文档](./README.zh-CN.md) | English
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
+[![Agent Skills](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
+[![Version](https://img.shields.io/badge/version-1.0.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+
 ---
 
 ```
