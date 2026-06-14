@@ -23,3 +23,8 @@ Thumbs.db
 # Project local
 .ruff_cache/
 .mypy_cache/
+
+# Secrets (never commit!)
+.token.sh
+*.token
+.env.local

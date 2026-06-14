@@ -1,10 +1,8 @@
 # ⚡ HermesHub
 
-> 为 Hermes Agent 打造的原生专业领域 Agent 市场 — 即插即用的 AI 专家特遣队
+> Professional domain Agent marketplace for Hermes Agent — a plug-and-play AI specialist task force.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Hermes Compatible](https://img.shields.io/badge/hermes-compatible-brightgreen.svg)](https://github.com/NousResearch/hermes-agent)
-[![Version](https://img.shields.io/badge/version-0.1.0-informational.svg)](https://github.com/Ow1onp/hermes-hub)
+[中文文档](./README.zh-CN.md) | English
 
 ---
 
@@ -13,148 +11,136 @@
  ┌──────────────────────────┐        ┌──────────────────────────┐
  │ Code Review · Performance │        │ CI/CD Pipeline · Docker  │
  │ Test Gen · Scaffold · Type│  ──▶   │ K8s Deploy · Log Analyze │
- │ Persona + Skills 体系     │        │ Persona + Skills 体系     │
+ │ Persona + Skills System   │        │ Persona + Skills System   │
  └──────────────────────────┘        └──────────────────────────┘
 ```
 
-## ✨ 特点
+## ✨ Features
 
-- **🎯 即插即用** — 每个 Agent 是独立的 persona + memory + skills 套装，按需加载，不污染上下文
-- **🧩 渐进式加载** — Skills 只在触发时才注入上下文，保持低 token 消耗、高响应速度
-- **📋 声明式定义** — Persona（身份锚定）和 Memory（领域约束）通过 Markdown 声明，与 Hermes Agent 的人格机制一脉相承
-- **🔒 安全内建** — 所有 Skill 包含输入验证、异常处理和审计日志，杜绝命令注入和密钥泄露
+- **🎯 Plug-and-Play** — Each Agent is a self-contained bundle of persona, memory, and skills. Load only what you need — no pollution of the conversation context.
+- **🧩 Progressive Loading** — Skills are injected into context only when activated by user intent. Token consumption stays low while capability scales.
+- **📋 Declarative Identity** — Agent identity is defined through persona.md (behavioral boundaries) and memory.md (domain constraints), aligned with Hermes Agent's native personality mechanism.
+- **🔒 Security Built-In** — Every Skill includes input validation, structured error handling, and audit-ready output. No hardcoded credentials, no command injection surfaces.
 
-## 🧠 什么是 HermesHub？
+## 🧠 What is HermesHub?
 
-HermesHub 参考了 wshobson/agents 项目的核心理念（插件化、渐进式上下文加载、分层模型策略），但专为 Hermes Agent 原生打造。每个 Agent 不是一个简单的 prompt template，而是一个完整的能力包：
+HermesHub draws architectural inspiration from the [wshobson/agents](https://github.com/wshobson/agents) ecosystem — plugin-based isolation, progressive context loading, and tiered model strategy — but is purpose-built for Hermes Agent. Each Agent is a complete capability package, not just a prompt template:
 
-- **Persona（身份）** — "你是谁"、"禁止做什么"、"必须怎么做"的行为红线
-- **Memory（记忆）** — 领域硬约束、格式规则、生态知识
-- **Skills（技能）** — 带 JSON Schema 接口和 Python 实现的工具能力
+- **Persona** — "Who you are": behavioral rules, tone, tool constraints, domain scope
+- **Memory** — "What you know": hard constraints, ecosystem facts, security rules, anti-patterns
+- **Skills** — "What you can do": JSON Schema interfaces + Python implementations, dispatched by Hermes' native tool system
 
-## 📦 Agent 列表
+## 📦 Agents
 
-| Agent | 领域 | Skills | 状态 |
-|-------|------|--------|------|
-| **Python Pro** | Python 3.11+ 开发专家 | 代码审查、性能分析、测试生成、项目脚手架、类型检查 | ✅ v0.1.0 |
-| **DevOps SRE** | 运维与站点可靠性工程 | CI/CD 生成、Docker 优化、K8s 部署、日志分析 | ✅ v0.1.0 |
+| Agent | Domain | Skills | Status |
+|-------|--------|--------|--------|
+| **Python Pro** | Python 3.11+ development expert | Code review, performance profiling, test generation, project scaffolding, type checking | ✅ v0.1.0 |
+| **DevOps SRE** | Infrastructure & site reliability | CI/CD generation, Docker optimization, K8s deployment, log analysis | ✅ v0.1.0 |
 
-### Python Pro Skills
+### Python Pro — Skills
 
-| Skill | 描述 | 触发条件 |
-|-------|------|----------|
-| `code_review.py` | 安全审计 + PEP 8 + 性能反模式 + 可维护性检查 | 用户请求代码审查/安全检查 |
-| `performance_profile.py` | CPU/内存/IO/异步性能瓶颈分析 | 用户询问性能优化/性能分析 |
-| `test_generator.py` | 从函数签名和 docstring 生成 pytest 测试 | 用户需要生成测试/单元测试 |
-| `package_scaffold.py` | 生成 pyproject.toml + 目录结构 + CI/Docker | 用户新建 Python 项目 |
-| `type_checker.py` | 类型注解审计 + 自动生成 + Protocol 建议 | 用户检查类型安全/添加类型 |
+| Skill | Description | Activation |
+|-------|-------------|------------|
+| `code_review.py` | Security audit + PEP 8 + performance anti-patterns + maintainability scoring | "Review this code for issues" |
+| `performance_profile.py` | CPU / memory / I/O / async bottleneck analysis | "Why is this code slow?" |
+| `test_generator.py` | Pytest generation from function signatures and docstrings | "Write tests for this function" |
+| `package_scaffold.py` | pyproject.toml + directory layout + Docker + CI generation | "Create a new Python project" |
+| `type_checker.py` | Type annotation audit + auto-generation + Protocol suggestions | "Add type hints to this code" |
 
-### DevOps SRE Skills
+### DevOps SRE — Skills
 
-| Skill | 描述 | 触发条件 |
-|-------|------|----------|
-| `ci_cd_generator.py` | GitHub Actions / GitLab CI 流水线生成 | 用户设置 CI/CD / 迁移 CI 平台 |
-| `docker_optimizer.py` | Dockerfile 审查 + 多阶段构建 + 安全加固 | 用户优化 Docker / 审查 Dockerfile |
-| `k8s_deployer.py` | Deployment + Service + Ingress + HPA + PDB | 用户部署到 Kubernetes |
-| `log_analyzer.py` | JSON/文本/Apache/Nginx/syslog 日志分析 | 用户排查日志/分析错误/生成事件报告 |
+| Skill | Description | Activation |
+|-------|-------------|------------|
+| `ci_cd_generator.py` | GitHub Actions / GitLab CI pipeline generation | "Set up CI/CD for this project" |
+| `docker_optimizer.py` | Dockerfile review + multi-stage build optimization + hardening | "Optimize my Dockerfile" |
+| `k8s_deployer.py` | Deployment + Service + Ingress + HPA + PDB generation | "Generate K8s manifests" |
+| `log_analyzer.py` | JSON / plaintext / Apache / Nginx / syslog log analysis | "Analyze these error logs" |
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 安装
+### Prerequisites
+
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent) installed and configured
+- Python 3.9+ (skills are tested on Python 3.9–3.12)
+
+### Installation
 
 ```bash
-# 克隆仓库
-git clone https://github.com/Ow1onp/hermes-hub.git
+# Clone the repository
+git clone https://github.com/Ow1onp/HermesHub.git
 
-# 复制你想要使用的 Agent 到 Hermes skills 目录
-cp -r hermes-hub/agents/python-pro ~/.hermes/skills/python-pro/
+# Install the Agent(s) you need into Hermes' skills directory
+cp -r HermesHub/agents/python-pro ~/.hermes/skills/python-pro/
+cp -r HermesHub/agents/devops-sre ~/.hermes/skills/devops-sre/
 ```
 
-### 使用方式
+### Usage
 
-**方式 1：在会话中手动加载**
+**Option 1: Load in-session**
 
-在 Hermes Agent 会话中输入：
+In an active Hermes Agent session:
 ```
 /skill python-pro
 ```
 
-加载后，Agent 会读取该技能包中的 persona 和 skills，自动获得 Python Pro 的身份和能力。
+The Agent immediately adopts the Python Pro persona and gains access to all five Python skills.
 
-**方式 2：启动时预加载**
+**Option 2: Preload at startup**
 
 ```bash
-hermes -s python-pro
+hermes -s python-pro -s devops-sre
 ```
 
-**方式 3：作为 Cron Job 的专业 Agent**
+**Option 3: As a scheduled specialist**
 
 ```bash
 hermes cron create "every 4h" \
   --skills python-pro \
-  --prompt "审查最近提交的 Python 代码，生成安全报告"
+  --prompt "Review the latest Python commits and generate a security report"
 ```
 
-### 加载特定 Skill
+### Skill Activation
 
-Skill 是渐进式加载的 — 只有当你提出匹配的意图时才会触发。例如：
+Skills are progressively loaded — they activate only when your intent matches. For example:
 
-> 用户："帮我审查这段代码的安全性"
-> → Hermes 自动加载 `code_review.py` skill
+> **You:** "Review this code for security vulnerabilities"
+> → Hermes loads `code_review.py` skill
 
-> 用户："生成这个项目的 Dockerfile"
-> → Hermes 自动加载 `docker_optimizer.py` skill
+> **You:** "Generate a Dockerfile for my FastAPI app"
+> → Hermes loads `docker_optimizer.py` skill
 
-## 🔗 深度适配 Hermes Agent
+## 🔗 Deep Hermes Agent Integration
 
-HermesHub 深度利用了 Hermes Agent 的以下机制：
+HermesHub leverages Hermes Agent's native mechanisms:
 
-- **Persona 注入** — Persona 文件可以被 Hermes 的 personality 系统直接读取
-- **Memory 持久化** — Memory 中的硬约束可以通过 `memory` 工具持久化，跨会话生效
-- **Skill 自注册** — 每个 `.py` skill 文件通过 `SCHEMA` 和 `handler()` 模式与 Hermes 的工具调度系统对接
-- **Profile 隔离** — 可以为不同 Agent 创建独立的 Hermes Profile，实现完全隔离的运行环境
+- **Persona injection** — `persona.md` files are compatible with Hermes' personality system
+- **Memory persistence** — `memory.md` constraints can be persisted via the `memory` tool, surviving across sessions
+- **Skill auto-registration** — Each `.py` skill uses the `SCHEMA` + `handler()` pattern, directly compatible with Hermes' tool dispatch
+- **Profile isolation** — Create separate Hermes Profiles per Agent for completely isolated execution environments
 
-## 📂 项目结构
+## 📂 Project Structure
 
 ```
-hermes-hub/
-├── README.md                     # 本文件
+HermesHub/
+├── README.md                     # English documentation (this file)
+├── README.zh-CN.md               # Chinese documentation
 ├── LICENSE                       # MIT
 ├── agents/
 │   ├── python-pro/
-│   │   ├── persona.md            # Python Pro 身份定义
-│   │   ├── memory.md             # 领域硬约束与生态知识
-│   │   └── skills/
-│   │       ├── code_review.py    # 代码审查与安全审计
-│   │       ├── performance_profile.py  # 性能分析
-│   │       ├── test_generator.py       # 测试生成
-│   │       ├── package_scaffold.py     # 项目脚手架
-│   │       └── type_checker.py         # 类型检查
+│   │   ├── persona.md            # Python Pro identity
+│   │   ├── memory.md             # Domain constraints & ecosystem knowledge
+│   │   └── skills/               # 5 skills (~89 KB)
 │   └── devops-sre/
 │       ├── persona.md
 │       ├── memory.md
-│       └── skills/
-│           ├── ci_cd_generator.py      # CI/CD 流水线
-│           ├── docker_optimizer.py     # Docker 优化
-│           ├── k8s_deployer.py         # K8s 部署
-│           └── log_analyzer.py         # 日志分析
+│       └── skills/               # 4 skills (~54 KB)
 ├── tests/
-│   ├── python-pro/
-│   │   └── test_cases.md         # 22 个测试用例
-│   └── devops-sre/
-│       └── test_cases.md         # 16 个测试用例
+│   ├── python-pro/test_cases.md  # 22 test cases
+│   └── devops-sre/test_cases.md  # 16 test cases
 └── docs/
-    └── architecture.md           # 架构设计文档
+    └── architecture.md           # Design decisions & architecture
 ```
 
-## 📄 许可证
+## 📄 License
 
-MIT License © 2025 Ow1onp
-
-## 🤝 贡献
-
-欢迎 Issue 和 PR。如果你有专业领域想贡献新的 Agent，请参考 `docs/architecture.md` 中的开发规范。
-
----
-
-**赞助支持：** [爱发电 @Gakkiopl](https://afdian.com/a/Gakkiopl)
+MIT — see [LICENSE](./LICENSE) for details.
