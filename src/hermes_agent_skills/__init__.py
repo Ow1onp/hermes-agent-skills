@@ -7,7 +7,7 @@ This package provides:
 - soul_reader: SOUL.md parser for persona-aware skill adaptation
 """
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __author__ = "Ow1onp"
 
 from .models import (

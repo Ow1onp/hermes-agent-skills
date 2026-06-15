@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hermes-agent-skills"
-version = "1.0.0"
+version = "1.1.0"
 description = "Production-grade skills for Hermes Agent — self-evolving, persona-aware, slash-command native"
 readme = "README.md"
 license = {text = "MIT"}
@@ -31,6 +31,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "pyyaml>=6.0",
+    "typer>=0.9",
 ]
 
 [project.optional-dependencies]
@@ -41,7 +42,7 @@ dev = [
 ]
 
 [project.scripts]
-hermes-skills-validator = "hermes_agent_skills.cli:main"
+hermes-skill = "cli.main:run"
 
 [project.urls]
 Homepage = "https://github.com/Ow1onp/hermes-agent-skills"
@@ -50,7 +51,7 @@ Repository = "https://github.com/Ow1onp/hermes-agent-skills"
 Issues = "https://github.com/Ow1onp/hermes-agent-skills/issues"
 
 [tool.setuptools]
-packages = ["hermes_agent_skills"]
+packages = ["hermes_agent_skills", "cli"]
 package-dir = {"" = "src"}
 
 [tool.pytest.ini_options]

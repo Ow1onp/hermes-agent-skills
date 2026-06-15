@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 def test_import_package():
     import hermes_agent_skills
-    assert hermes_agent_skills.__version__ == "1.0.0"
+    assert hermes_agent_skills.__version__ == "1.1.0"
     assert hermes_agent_skills.__author__ == "Ow1onp"
 
 
