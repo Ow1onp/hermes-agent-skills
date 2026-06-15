@@ -1,0 +1,82 @@
+name: "💡 Feature Request"
+description: "Suggest a new feature or improvement"
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the feature idea! Describe the problem and your proposed solution.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem"
+      description: "What problem does this feature solve? What pain point are you experiencing?"
+      placeholder: |
+        When I need to batch-validate multiple skills across directories,
+        I currently have to run `hermes-skill validate` one at a time...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: "Proposed Solution"
+      description: "How do you envision this feature working? Include examples if helpful."
+      placeholder: |
+        Add a `--batch` flag: `hermes-skill validate skills/ --batch`
+        Output all results as a JSON array with per-file status.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives Considered"
+      description: "What other approaches have you tried or considered? Why aren't they sufficient?"
+      placeholder: "I wrote a shell script to loop over directories, but it can't access the Validator's internal checks."
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: "Use Case"
+      description: "Describe a concrete scenario where this feature would be valuable."
+      placeholder: "In CI/CD, after a PR modifies multiple skills, the pipeline should validate all of them in one command and fail fast if any are invalid."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: "Scope"
+      description: "Which area does this request impact?"
+      options:
+        - "Single Skill"
+        - "CLI Tool"
+        - "Core Library (validator / evolution / soul_reader)"
+        - "Documentation"
+        - "CI/CD"
+        - "Cross-Skill Workflow"
+        - "Skill Marketplace Direction"
+        - "Skill Analytics Direction"
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "How Important Is This To You?"
+      options:
+        - "Nice to have"
+        - "Important — wastes time weekly"
+        - "Critical — blocks my usage"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      options:
+        - label: "I have searched existing issues and discussions for duplicates"
+          required: true

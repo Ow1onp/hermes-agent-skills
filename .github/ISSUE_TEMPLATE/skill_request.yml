@@ -1,0 +1,90 @@
+name: "🧬 Skill Request"
+description: "Request a new skill for the collection"
+title: "[Skill Request]: "
+labels: ["skill-request", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new skill! Good skills are reusable workflows that solve a specific, recurring problem.
+
+  - type: input
+    id: skill-name
+    attributes:
+      label: "Skill Name"
+      description: "lowercase + hyphens, e.g. `api-doc-generator`"
+      placeholder: "my-skill-idea"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem"
+      description: "What problem does this skill solve? What's the recurring pain point?"
+      placeholder: |
+        Every time I set up a new project, I manually configure linting,
+        pre-commit hooks, and CI. This takes 30+ minutes each time.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example-workflow
+    attributes:
+      label: "Example Workflow"
+      description: "Describe the step-by-step flow this skill should guide the user through."
+      placeholder: |
+        1. Detect project language and framework
+        2. Select appropriate linter (ruff for Python, eslint for JS, etc.)
+        3. Generate config file with sensible defaults
+        4. Set up pre-commit hooks
+        5. Generate CI pipeline snippet
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: "Expected Outcome"
+      description: "What should the user have at the end? What does success look like?"
+      placeholder: |
+        A fully configured project with:
+        - .pre-commit-config.yaml
+        - pyproject.toml [tool.ruff] section (if Python)
+        - .github/workflows/lint.yml
+        All passing on first run.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: "Lifecycle Phase"
+      options:
+        - "DEFINE (requirements / planning)"
+        - "BUILD (development)"
+        - "VERIFY (testing / review)"
+        - "SHIP (deployment / release)"
+        - "EVOLVE (maintenance / improvement)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: hermes-features
+    attributes:
+      label: "Hermes-Specific Capabilities (optional)"
+      description: "Could this skill leverage Hermes-specific features (delegate_task, cronjob, etc.)?"
+      placeholder: |
+        - `delegate_task` to lint multiple files in parallel
+        - `cronjob` to re-run lint weekly
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      options:
+        - label: "I have verified no similar skill exists in the collection"
+          required: true
+        - label: "I agree this skill follows the Agent Skills Standard format"
+          required: true

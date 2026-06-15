@@ -1,0 +1,107 @@
+name: "🐛 Bug Report"
+description: "Report a bug in hermes-agent-skills"
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below.
+
+  - type: input
+    id: environment
+    attributes:
+      label: "Environment"
+      description: "Operating system and Python version (e.g., Windows 10, Python 3.11)"
+      placeholder: "Windows 10, Python 3.11.15"
+    validations:
+      required: true
+
+  - type: input
+    id: hermes-version
+    attributes:
+      label: "Hermes Agent Version"
+      description: "The version of Hermes Agent you are running"
+      placeholder: "v0.8.0"
+    validations:
+      required: true
+
+  - type: input
+    id: skill-version
+    attributes:
+      label: "hermes-agent-skills Version"
+      description: "`pip show hermes-agent-skills` or `hermes-skill --version`"
+      placeholder: "1.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-component
+    attributes:
+      label: "Affected Component"
+      description: "Which skill or component is affected?"
+      multiple: true
+      options:
+        - "requirement-analyzer"
+        - "spec-driven-dev"
+        - "test-driven-dev"
+        - "debugger-coordinator"
+        - "code-quality-guardian"
+        - "cicd-orchestrator"
+        - "skill-curator"
+        - "persona-aware-coding"
+        - "CLI (hermes-skill)"
+        - "Validator"
+        - "EvolutionEngine"
+        - "SoulReader"
+        - "Documentation"
+        - "Other"
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: "Reproduction Steps"
+      description: "Step-by-step instructions to reproduce the bug"
+      placeholder: |
+        1. Install `pip install hermes-agent-skills==1.1.0`
+        2. Run `hermes-skill validate ...`
+        3. Open file `...`
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What did you expect to happen?"
+      placeholder: "The validator should report 0 errors for a valid SKILL.md file."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: "Actual Behavior"
+      description: "What actually happened?"
+      placeholder: "The validator crashed with a TypeError on line 42."
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-log
+    attributes:
+      label: "Error Log / Screenshots"
+      description: "Paste terminal output, error traceback, or drag in screenshots"
+      render: shell
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      options:
+        - label: "I have searched existing issues and found no duplicates"
+          required: true
+        - label: "I have checked the [FAQ](https://github.com/Ow1onp/hermes-agent-skills/blob/main/docs/FAQ.md)"
+          required: false

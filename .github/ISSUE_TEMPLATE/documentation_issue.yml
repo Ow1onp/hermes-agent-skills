@@ -1,0 +1,63 @@
+name: "📖 Documentation Issue"
+description: "Report unclear, missing, or incorrect documentation"
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the documentation!
+
+  - type: input
+    id: page
+    attributes:
+      label: "Page"
+      description: "Which documentation page or file has the issue? Include URL or file path."
+      placeholder: "docs/QUICKSTART.md#L45 or skills/build/test-driven-dev/SKILL.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problem"
+      description: "What is unclear, missing, incorrect, or outdated?"
+      placeholder: |
+        The QUICKSTART says to run `hermes-skill create` but doesn't mention
+        that you need to install the CLI first with `pip install hermes-agent-skills`.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-improvement
+    attributes:
+      label: "Suggested Improvement"
+      description: "How would you fix or improve this? Specific wording or examples welcome."
+      placeholder: |
+        Add a "Prerequisites" section before the "create" step:
+        ```bash
+        pip install hermes-agent-skills
+        ```
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: "Issue Type"
+      options:
+        - "Missing — content does not exist"
+        - "Unclear — content is hard to understand"
+        - "Outdated — content doesn't match current behavior"
+        - "Wrong — content contains factual errors"
+        - "Translation — Chinese/English mismatch"
+        - "Examples needed — not enough code samples"
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before Submitting"
+      options:
+        - label: "I have confirmed the issue exists in the latest version"
+          required: true

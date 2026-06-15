@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 GitHub Discussions"
+    url: https://github.com/Ow1onp/hermes-agent-skills/discussions
+    about: "Ask questions, share ideas, or showcase your custom skills here."
+  - name: "📖 Documentation"
+    url: https://github.com/Ow1onp/hermes-agent-skills/tree/main/docs
+    about: "Read QUICKSTART, TUTORIAL, FAQ, and CONTRIBUTING before opening an issue."
