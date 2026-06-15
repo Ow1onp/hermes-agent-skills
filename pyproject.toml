@@ -40,6 +40,9 @@ dev = [
     "pytest-xdist>=3.0",
 ]
 
+[project.scripts]
+hermes-skills-validator = "hermes_agent_skills.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/Ow1onp/hermes-agent-skills"
 Documentation = "https://github.com/Ow1onp/hermes-agent-skills#readme"

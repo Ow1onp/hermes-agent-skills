@@ -1,7 +1,7 @@
 ---
 name: debugger-coordinator
 description: Use when debugging complex issues involving multiple modalities (frontend + backend, API + UI, terminal + browser). Coordinates Hermes Agent's built-in debugger, browser, terminal, and vision tools for systematic root-cause analysis.
-triggers: [debug, 调试, 报错, error, crash, 崩溃, 500, bug, not working, 不工作, traceback, stack trace]
+triggers: [debug, 调试, 报错, error, crash, 崩溃, "500", bug, not working, 不工作, traceback, stack trace]
 version: 1.0.0
 author: Ow1onp
 ---

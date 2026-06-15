@@ -10,13 +10,24 @@ This package provides:
 __version__ = "1.0.0"
 __author__ = "Ow1onp"
 
-from .validator import SkillValidator, ValidationResult
+from .models import (
+    IssueSeverity,
+    ValidationDimension,
+    ValidationIssue,
+    ValidationResult,
+    ValidatorConfig,
+)
+from .validator import SkillValidator
 from .soul_reader import SoulReader, SoulProfile
 from .evolution import EvolutionEngine, EvolutionSuggestion
 
 __all__ = [
     "SkillValidator",
     "ValidationResult",
+    "ValidationIssue",
+    "IssueSeverity",
+    "ValidationDimension",
+    "ValidatorConfig",
     "SoulReader",
     "SoulProfile",
     "EvolutionEngine",
