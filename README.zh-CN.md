@@ -1,151 +1,118 @@
-# ⚡ HermesHub
+# ⚡ Hermes Agent Skills
 
-> 为 Hermes Agent 打造的即插即用专业领域 Agent 集合
+> 为 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 量身打造的生产级技能库与领域 Agent 集合——自进化、身份感知、斜杠命令原生。
 
 [English](./README.md) | 中文文档
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
-[![Agent Skills](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
-[![Version](https://img.shields.io/badge/version-1.0.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+[![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
+[![Tests](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen)](tests/)
+[![Version](https://img.shields.io/badge/version-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
 
 ---
 
 ```
-  Python Pro                           DevOps SRE
- ┌──────────────────────────┐        ┌──────────────────────────┐
- │ 代码审查 · 性能分析       │        │ CI/CD 流水线 · Docker     │
- │ 测试生成 · 脚手架 · 类型  │  ──▶   │ K8s 部署 · 日志分析       │
- │ Persona + Skills 体系     │        │ Persona + Skills 体系     │
- └──────────────────────────┘        └──────────────────────────┘
+  DEFINE           BUILD          VERIFY           SHIP           EVOLVE
+ ┌────────┐     ┌────────┐     ┌─────────┐     ┌────────┐     ┌──────────┐
+ │需求分析 │ ──▶ │TDD 开发│ ──▶ │多模态调试│ ──▶ │CI/CD   │ ──▶ │自进化策展 │
+ │规格驱动 │     │        │     │代码门禁  │     │编排    │     │身份感知  │
+ └────────┘     └────────┘     └─────────┘     └────────┘     └──────────┘
 ```
 
 ## ✨ 特点
 
-- **🎯 即插即用** — 每个 Agent 是独立的 persona + memory + skills 套装，按需加载，不污染对话上下文
-- **🧩 渐进式加载** — Skills 仅在用户意图匹配时注入上下文，保持低 token 消耗、高响应速度
-- **📋 声明式定义** — persona.md（身份锚定）和 memory.md（领域约束）通过 Markdown 声明，与 Hermes Agent 原生机制对齐
-- **🔒 安全内建** — 所有 Skill 包含输入验证、结构化错误处理和审计输出，无硬编码凭证
+- **🧬 自进化** — 技能不是静态文件。内置 `EvolutionEngine` 从五个维度评估技能健康度（使用频率、成功率、纠正次数、新鲜度、命令有效性），自动检测过时技能并提出改进建议，直接对接 Hermes 的 `/curator` 学习循环。
+- **🎭 身份感知** — 在 Hermes 配置中放置 `SOUL.md`，所有代码生成技能自动适配你的风格：命名规范、注释密度、架构偏好。让 Agent 写出的代码真正"像你写的"。
+- **🔗 命令体系原生** — 每个技能深度引用 Hermes 独有工具：`delegate_task`、`browser`+`terminal`+`vision` 联动、持久记忆、`/curator`、`cronjob`、`webhook`。
+- **📐 开放标准** — 全部 `SKILL.md` 文件遵循 [Agent Skills 开放标准](https://github.com/addyosmani/agent-skills)，由自带的 `SkillValidator` 保证格式合法性。
 
-## 🧠 什么是 HermesHub？
+## 📦 工作流技能（8 个 SKILL.md）
 
-HermesHub 借鉴了 [wshobson/agents](https://github.com/wshobson/agents) 生态的架构理念（插件化隔离、渐进式上下文、分层模型策略），但专为 Hermes Agent 原生打造。每个 Agent 不是简单的 prompt 模板，而是完整的能力包：
+| 技能 | 阶段 | 描述 | Hermes 专有特性 |
+|:---|:---|:---|:---|
+| `requirement-analyzer` | 定义 | 五轮结构化对话，澄清模糊需求至 95% 清晰度 | 持久记忆跨会话保持上下文 |
+| `spec-driven-dev` | 规格 | 七要素 Spec 文档，代码先行 | `/skills` 串联形成工作流 |
+| `test-driven-dev` | 构建 | RED-GREEN-REFACTOR 循环 + 测试金字塔 | `delegate_task` 并行测试执行 |
+| `debugger-coordinator` | 验证 | 五步调试法 + 多模态工具协调 | `browser`+`terminal`+`vision` 联动 |
+| `code-quality-guardian` | 评审 | 六轴质量门禁（安全/复杂度/风格/覆盖/文档/依赖） | `patch` 自动修复 + `/curator` 追踪 |
+| `cicd-orchestrator` | 交付 | GitHub Actions 流水线生成与优化 | `cronjob` 定时 + `webhook` 触发 |
+| `skill-curator` | 进化 | 四阶段策展：采集→分析→建议→执行 | 直接对接 `/curator` 系统 |
+| `persona-aware-coding` | 身份 | SOUL.md 驱动的全流程代码风格适配 | Hermes 原生身份系统 |
 
-- **Persona（身份）** — "你是谁"、"禁止做什么"、"必须怎么做"
-- **Memory（记忆）** — 领域硬约束、安全规则、反模式知识、格式规范
-- **Skills（技能）** — JSON Schema 接口 + Python 实现，通过 Hermes 工具调度系统触发
+## 🤖 领域 Agent（来自 HermesHub）
 
-## 📦 已包含的 Agent
+即插即用的专业 Agent——每个都是 persona + memory + 可调度 Python 技能的独立套装。
 
-| Agent | 领域 | Skills | 状态 |
-|-------|------|--------|------|
-| **Python Pro** | Python 3.11+ 开发专家 | 代码审查、性能分析、测试生成、项目脚手架、类型检查 | ✅ v0.1.0 |
-| **DevOps SRE** | 基础设施与站点可靠性 | CI/CD 生成、Docker 优化、K8s 部署、日志分析 | ✅ v0.1.0 |
+| Agent | 领域 | 技能 | 安装 |
+|-------|------|------|------|
+| **Python Pro** | Python 3.11+ 开发 | 代码审查 · 性能分析 · 测试生成 · 脚手架 · 类型检查 | `cp -r agents/python-pro ~/.hermes/skills/` |
+| **DevOps SRE** | 基础设施 & SRE | CI/CD 流水线 · Docker 优化 · K8s 部署 · 日志分析 | `cp -r agents/devops-sre ~/.hermes/skills/` |
 
-### Python Pro — 技能列表
-
-| Skill | 描述 | 触发条件 |
-|-------|------|----------|
-| `code_review.py` | 安全审计 + PEP 8 + 性能反模式 + 可维护性评分 | "审查这段代码" |
-| `performance_profile.py` | CPU / 内存 / IO / 异步瓶颈分析 | "这段代码为什么慢？" |
-| `test_generator.py` | 从函数签名和 docstring 生成 pytest 测试 | "为这个函数写测试" |
-| `package_scaffold.py` | pyproject.toml + 目录结构 + Docker + CI | "创建新的 Python 项目" |
-| `type_checker.py` | 类型注解审计 + 自动生成 + Protocol 建议 | "给这段代码加类型注解" |
-
-### DevOps SRE — 技能列表
-
-| Skill | 描述 | 触发条件 |
-|-------|------|----------|
-| `ci_cd_generator.py` | GitHub Actions / GitLab CI 流水线生成 | "为这个项目配置 CI/CD" |
-| `docker_optimizer.py` | Dockerfile 审查 + 多阶段构建 + 安全加固 | "优化我的 Dockerfile" |
-| `k8s_deployer.py` | Deployment + Service + Ingress + HPA + PDB | "生成 K8s 部署清单" |
-| `log_analyzer.py` | JSON / 文本 / Apache / Nginx / syslog 日志分析 | "分析这些错误日志" |
+领域 Agent 使用 `SCHEMA` + `handler()` 模式，直接兼容 Hermes 的工具调度系统。技能仅在用户意图匹配时激活——不污染对话上下文。
 
 ## 🚀 快速开始
 
-### 前提条件
-
-- 已安装 [Hermes Agent](https://github.com/NousResearch/hermes-agent)
-- Python 3.9+（Skills 在 Python 3.9–3.12 上测试通过）
-
-### 安装
-
 ```bash
-# 克隆仓库
-git clone https://github.com/Ow1onp/HermesHub.git
+# 推荐：通过 hermes skills tap 安装
+hermes skills tap add Ow1onp/hermes-agent-skills
+hermes skills browse
+hermes skills install requirement-analyzer
 
-# 将需要的 Agent 安装到 Hermes skills 目录
-cp -r HermesHub/agents/python-pro ~/.hermes/skills/python-pro/
-cp -r HermesHub/agents/devops-sre ~/.hermes/skills/devops-sre/
-```
+# 或克隆到本地
+git clone https://github.com/Ow1onp/hermes-agent-skills.git
 
-### 使用方式
+# 加载工作流技能
+/skill requirement-analyzer
 
-**方式 1：会话中加载**
-
-在 Hermes Agent 会话中输入：
-```
+# 加载领域 Agent
 /skill python-pro
 ```
 
-Agent 立即获得 Python Pro 的身份和全部五项技能。
+## 🔗 Hermes 深度集成
 
-**方式 2：启动时预加载**
+```python
+# 自进化引擎
+from hermes_agent_skills import EvolutionEngine
+engine = EvolutionEngine()
+engine.record_task(...)
+suggestions = engine.analyze()  # 检测过时技能、重复错误模式
 
-```bash
-hermes -s python-pro -s devops-sre
+# 身份感知编码
+profile = SoulReader().read("~/.hermes/SOUL.md")
+print(profile.get_code_prompt_hint())
 ```
-
-**方式 3：作为定时专业 Agent**
-
-```bash
-hermes cron create "每4小时" \
-  --skills python-pro \
-  --prompt "审查最近的 Python 提交并生成安全报告"
-```
-
-### Skill 激活方式
-
-Skill 是渐进式加载的 — 只有当你提出匹配的意图时才会触发。例如：
-
-> **你：** "帮我审查这段代码的安全性"
-> → Hermes 自动加载 `code_review.py` skill
-
-> **你：** "给我的 FastAPI 项目生成 Dockerfile"
-> → Hermes 自动加载 `docker_optimizer.py` skill
-
-## 🔗 深度适配 Hermes Agent
-
-HermesHub 深度利用了 Hermes Agent 的以下机制：
-
-- **Persona 注入** — `persona.md` 文件兼容 Hermes 的 personality 系统
-- **Memory 持久化** — `memory.md` 约束可通过 `memory` 工具持久化，跨会话生效
-- **Skill 自注册** — 每个 `.py` skill 使用 `SCHEMA` + `handler()` 模式，直接对接 Hermes 工具调度
-- **Profile 隔离** — 可为不同 Agent 创建独立的 Hermes Profile，实现完全隔离
 
 ## 📂 项目结构
 
 ```
-HermesHub/
-├── README.md                     # 英文文档
-├── README.zh-CN.md               # 中文文档（本文件）
-├── LICENSE                       # MIT
-├── agents/
-│   ├── python-pro/
-│   │   ├── persona.md            # Python Pro 身份定义
-│   │   ├── memory.md             # 领域约束与生态知识
-│   │   └── skills/               # 5 个技能 (~89 KB)
-│   └── devops-sre/
-│       ├── persona.md
-│       ├── memory.md
-│       └── skills/               # 4 个技能 (~54 KB)
-├── tests/
-│   ├── python-pro/test_cases.md  # 22 个测试用例
-│   └── devops-sre/test_cases.md  # 16 个测试用例
-└── docs/
-    └── architecture.md           # 架构设计文档
+hermes-agent-skills/
+├── skills/                  # SKILL.md 工作流技能（Agent Skills 开放标准）
+│   ├── define/ · build/ · verify/ · ship/ · evolve/
+├── agents/                  # 领域 Agent（来自 HermesHub）
+│   ├── python-pro/          # persona.md + memory.md + 5 技能
+│   └── devops-sre/          # persona.md + memory.md + 4 技能
+├── src/hermes_agent_skills/ # Python 核心库
+│   ├── validator.py         # SKILL.md 验证器
+│   ├── evolution.py         # 自进化引擎
+│   └── soul_reader.py       # SOUL.md 人设解析器
+├── src/cli/                 # hermes-skill CLI（Typer）
+├── tests/                   # 46 个测试，全部通过
+├── scripts/                 # 工具脚本
+└── .github/workflows/       # CI/CD（lint + 测试矩阵 + 验证 + 安全扫描）
 ```
 
 ## 📄 许可证
 
-MIT — 详见 [LICENSE](./LICENSE)。
+[MIT](LICENSE) © [Ow1onp](https://github.com/Ow1onp)
+
+## 🤝 贡献
+
+技能文件采用纯 Markdown 格式，欢迎提交 Issue 和 Pull Request。
+
+```bash
+git clone https://github.com/Ow1onp/hermes-agent-skills.git
+# 在 skills/<阶段>/<名称>/SKILL.md 下创建你的技能
+pytest tests/test_validator.py -v
+# 提交 PR
+```
