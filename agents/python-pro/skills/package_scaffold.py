@@ -174,11 +174,11 @@ def handler(args: dict[str, Any]) -> str:
                 ),
                 "write": "Write each file from the 'files' map to the corresponding path.",
                 "setup": (
-                    f"After creating files, run:\n"
-                    f"  python -m venv .venv\n"
-                    f"  source .venv/bin/activate  # or .venv\\Scripts\\activate on Windows\n"
-                    f"  uv pip install -e '.[dev]'\n"
-                    f"  ruff check . && pytest"
+                    "After creating files, run:\n"
+                    "  python -m venv .venv\n"
+                    "  source .venv/bin/activate  # or .venv\\Scripts\\activate on Windows\n"
+                    "  uv pip install -e '.[dev]'\n"
+                    "  ruff check . && pytest"
                 )
             }
         })
@@ -283,9 +283,9 @@ omit = ["tests/*", "*/migrations/*"]
 def _generate_init(name: str, ptype: str) -> str:
     """Generate __init__.py with appropriate content."""
     docstrings = {
-        "library": f'"""A Python library for data processing and utilities."""\n\n__version__ = "0.1.0"',
-        "cli": f'"""A command-line tool for task automation."""\n\n__version__ = "0.1.0"',
-        "web_api": f'"""A FastAPI web application."""\n\n__version__ = "0.1.0"',
+        "library": '"""A Python library for data processing and utilities."""\n\n__version__ = "0.1.0"',
+        "cli": '"""A command-line tool for task automation."""\n\n__version__ = "0.1.0"',
+        "web_api": '"""A FastAPI web application."""\n\n__version__ = "0.1.0"',
         "minimal": '"""A Python module."""\n\n__version__ = "0.1.0"',
     }
     return docstrings.get(ptype, docstrings["minimal"])
@@ -391,7 +391,7 @@ def _generate_dockerfile(name: str, layout: str, ptype: str) -> str:
     elif ptype == "cli":
         entry_point = f'ENTRYPOINT ["{name}"]'
 
-    copy_src = f"COPY src/ src/" if layout == "src" else f"COPY {package_name}/ {package_name}/"
+    copy_src = "COPY src/ src/" if layout == "src" else f"COPY {package_name}/ {package_name}/"
 
     return f'''# ---- Build Stage ----
 FROM python:{_get_py_version_simple("3.11")}-slim AS builder

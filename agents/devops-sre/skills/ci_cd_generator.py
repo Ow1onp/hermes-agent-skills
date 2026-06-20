@@ -109,7 +109,7 @@ def handler(args: dict[str, Any]) -> str:
             "instructions": {
                 "save": f"Save to '{filename}' in your repository root.",
                 "secrets": "Set required secrets in your CI platform settings.",
-                "validate": f"Push to trigger the pipeline, or validate locally with 'act' (GitHub Actions) or 'gitlab-ci-local' (GitLab CI)."
+                "validate": "Push to trigger the pipeline, or validate locally with 'act' (GitHub Actions) or 'gitlab-ci-local' (GitLab CI)."
             }
         })
 
@@ -124,7 +124,7 @@ def _generate_github_actions(
 ) -> str:
     """Generate GitHub Actions workflow YAML."""
     lines = [
-        f"name: CI/CD Pipeline",
+        "name: CI/CD Pipeline",
         "",
         "on:",
         "  push:",
@@ -135,7 +135,7 @@ def _generate_github_actions(
         "env:",
         f"  PROJECT_NAME: {name}",
         "  DOCKER_REGISTRY: ghcr.io",
-        f"  IMAGE_NAME: {docker_image or f'${{{{ github.repository }}}}'}",
+        f"  IMAGE_NAME: {docker_image or '${{ github.repository }}'}",
         "",
     ]
 
@@ -355,7 +355,7 @@ def _generate_gitlab_ci(
         "  before_script:",
         "    - pip install uv",
         "",
-        f"stages:",
+        "stages:",
     ]
     for stage in stage_list:
         lines.append(f"  - {stage}")
@@ -371,12 +371,12 @@ def _generate_gitlab_ci(
         lines.append("")
 
     if "test" in stages:
-        py_str = ", ".join(py_versions)
-        lines.append(f"test:")
+        ", ".join(py_versions)
+        lines.append("test:")
         lines.append("  stage: test")
-        lines.append(f"  parallel:")
+        lines.append("  parallel:")
         for v in py_versions:
-            lines.append(f"    matrix:")
+            lines.append("    matrix:")
             lines.append(f"      - PYTHON_VERSION: \"{v}\"")
         lines.append("  image: python:$PYTHON_VERSION-slim")
         lines.append("  script:")
@@ -397,8 +397,8 @@ def _generate_gitlab_ci(
         lines.append("  services:")
         lines.append("    - docker:dind")
         lines.append("  script:")
-        lines.append(f"    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .")
-        lines.append(f"    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA")
+        lines.append("    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .")
+        lines.append("    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA")
         lines.append("  only:")
         lines.append("    - main")
         lines.append("")

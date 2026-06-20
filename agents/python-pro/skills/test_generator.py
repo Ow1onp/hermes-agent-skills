@@ -224,10 +224,9 @@ def _generate_tests_for_function(func: dict, style: str) -> dict:
     func_name = func["name"]
     required = func["required_params"]
     is_async = func["is_async"]
-    has_self = func["has_self"]
+    func["has_self"]
 
     # Determine test prefix
-    test_prefix = "async " if is_async else ""
     await_prefix = "await " if is_async else ""
     decorator = "@pytest.mark.asyncio\n    " if is_async else ""
 

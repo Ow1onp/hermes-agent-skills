@@ -248,7 +248,7 @@ def _io_analysis(code: str, context: str) -> list[dict]:
     # File open without context manager
     for match in re.finditer(r'(\w+)\s*=\s*open\s*\(', code):
         line_num = code[:match.start()].count("\n") + 1
-        var_name = match.group(1)
+        match.group(1)
         # Check if 'with' is used
         before = code[:match.start()].split("\n")[-1]
         if "with " not in before:
@@ -257,7 +257,7 @@ def _io_analysis(code: str, context: str) -> list[dict]:
                 "impact": "high",
                 "category": "io",
                 "pattern": "open_without_context_manager",
-                "description": f"File opened without 'with' statement. File may not close properly on exceptions, leaking file descriptors.",
+                "description": "File opened without 'with' statement. File may not close properly on exceptions, leaking file descriptors.",
                 "snippet": match.group(0),
                 "fix": "Use 'with open(path) as f:' for automatic cleanup."
             })
@@ -414,7 +414,7 @@ def _suggest_tools(findings: list[dict], analysis_type: str) -> list[str]:
     tools: set[str] = set()
 
     categories = {f.get("category") for f in findings}
-    impacts = {f.get("impact") for f in findings}
+    {f.get("impact") for f in findings}
 
     if "cpu" in categories:
         tools.update(["cProfile", "snakeviz", "py-spy", "scalene"])
