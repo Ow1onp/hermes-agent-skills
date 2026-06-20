@@ -34,3 +34,9 @@ Thumbs.db
 # Hermes
 .hermes/
 *.db-journal
+
+# Secrets
+.gh_token
+
+# Build artifacts
+.release_payload.json
