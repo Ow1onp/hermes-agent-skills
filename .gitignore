@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
 *.so
 *.egg-info/
 /dist/
@@ -37,6 +38,13 @@ Thumbs.db
 
 # Secrets
 .gh_token
+.token.sh
+*.token
+.env.local
 
 # Build artifacts
 .release_payload.json
+
+# Linting
+.ruff_cache/
+.mypy_cache/
