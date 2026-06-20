@@ -516,7 +516,7 @@ class SkillValidator:
             )
 
         # Progressive disclosure: body line count
-        non_empty_lines = [l for l in body_lines if l.strip()]
+        non_empty_lines = [line for line in body_lines if line.strip()]
         if len(non_empty_lines) > self.config.max_body_lines:
             result.add_warning(
                 ValidationDimension.BEST_PRACTICE,
@@ -712,7 +712,7 @@ class SkillValidator:
             if field == "license" and self.config.require_license:
                 result.add_error(
                     ValidationDimension.METADATA,
-                    f"Missing required field: 'license'",
+                    "Missing required field: 'license'",
                     field="license",
                 )
             elif self.config.strict:

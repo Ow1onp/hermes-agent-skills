@@ -2,7 +2,6 @@
 Tests for hermes-skill validate command.
 """
 
-import pytest
 from pathlib import Path
 
 

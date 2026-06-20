@@ -7,7 +7,6 @@ open standard, reporting errors, warnings, and compliance status.
 
 import sys
 from pathlib import Path
-from typing import Optional
 
 import typer
 

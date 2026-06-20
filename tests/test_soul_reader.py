@@ -10,7 +10,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from hermes_agent_skills.soul_reader import (
-    SoulReader, SoulProfile, DEFAULT_SOUL
+    SoulReader, SoulProfile
 )
 
 

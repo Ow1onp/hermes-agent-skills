@@ -14,13 +14,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from hermes_agent_skills.validator import (
     SkillValidator,
-    ValidationResult,
     ValidatorConfig,
 )
 from hermes_agent_skills.models import (
     IssueSeverity,
-    ValidationDimension,
-    ValidationIssue,
 )
 
 

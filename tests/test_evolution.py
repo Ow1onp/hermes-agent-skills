@@ -3,7 +3,6 @@ Tests for the self-evolution engine.
 """
 
 import pytest
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import sys

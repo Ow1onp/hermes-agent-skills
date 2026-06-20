@@ -25,7 +25,7 @@ _SRC_DIR = Path(__file__).parent.parent
 if _SRC_DIR.exists():
     sys.path.insert(0, str(_SRC_DIR))
 
-from . import __version__
+from . import __version__  # noqa: E402 — sys.path must be set before import
 
 
 # ── Main Typer app ─────────────────────────────────────────

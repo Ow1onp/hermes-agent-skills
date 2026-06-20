@@ -2,7 +2,6 @@
 Shared test fixtures for CLI tests.
 """
 
-import os
 import sys
 import tempfile
 from pathlib import Path

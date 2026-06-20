@@ -2,8 +2,6 @@
 Tests for hermes-skill create command.
 """
 
-import pytest
-from pathlib import Path
 
 
 def test_create_non_interactive_basic(app, runner, tmp_skills_dir):

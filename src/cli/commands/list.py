@@ -8,7 +8,7 @@ in table or JSON format, with optional filtering.
 import json
 import sys
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional
 
 import typer
 
