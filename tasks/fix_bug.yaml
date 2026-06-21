@@ -1,0 +1,75 @@
+# fix_bug
+# User says: "修复这个错误" / "fix this bug"
+
+task_id: fix_bug
+
+label:
+  zh: 修复错误
+  en: Fix Bug
+
+description:
+  zh: 系统化调试流程：复现 → 分析 → 修复 → 验证
+  en: "Systematic debug workflow: reproduce → analyze → fix → verify"
+
+intent:
+  keywords_zh:
+    - 修复
+    - bug
+    - 错误
+    - 报错
+    - 调试
+    - 修
+    - 改
+    - 不工作
+    - 崩溃
+    - 失败
+    - 修一下
+    - 修好
+    - 出问题了
+    - 有问题
+  keywords_en:
+    - fix
+    - bug
+    - error
+    - crash
+    - debug
+    - broken
+    - not working
+    - traceback
+    - exception
+    - test
+    - failing
+    - failure
+
+workflow:
+  - persona: Debugger
+    step: 1_reproduce
+    description: 复现错误、收集上下文、读取日志
+  - persona: Debugger
+    step: 2_analyze
+    description: 分析根因、定位代码、理解错误
+  - persona: Debugger
+    step: 3_fix
+    description: 实施修复、最小改动
+  - persona: Code Reviewer
+    step: 4_verify
+    description: 验证修复、检查副作用、运行测试
+
+required_skills:
+  - debugger-coordinator
+  - code-quality-guardian
+
+constraints:
+  - 禁止跳过根因分析
+  - 必须先理解再修改
+  - 禁止猜测性修改
+  - 修复后必须验证（测试通过）
+  - 最小改动原则
+
+success_criteria:
+  - 错误不再复现
+  - 相关测试全部通过
+  - 没有引入新的 lint 错误
+  - 修复记录在 commit message 中
+
+default_mode: advanced

@@ -1,0 +1,62 @@
+# publish_project
+# Task First, not Skill First.
+# User says: "帮我发布项目" → system handles everything.
+
+task_id: publish_project
+label:
+  zh: 发布项目
+  en: Publish Project
+
+description:
+  zh: 自动执行完整的项目发布流程：检查 → 验证 → 发布 → 公告
+  en: "Full publish pipeline: check → validate → release → announce"
+
+# ── Intent matching ──────────────────────────────────
+intent:
+  keywords_zh:
+    - 发布
+    - 上线
+    - 发版
+    - 发布项目
+    - 部署
+  keywords_en:
+    - publish
+    - release
+    - ship
+    - deploy
+    - launch
+
+# ── Workflow: ordered personas ──────────────────────
+workflow:
+  - persona: Project Manager
+    step: 1_precheck
+    description: 检查项目状态、版本号一致性、未完成事项
+  - persona: Release Manager
+    step: 2_release
+    description: 执行发布流程、tag、GitHub Release
+  - persona: Launch Commander
+    step: 3_announce
+    description: 发布社区公告（DEV、HN、Reddit 等）
+
+# ── Required skills ──────────────────────────────────
+required_skills:
+  - cicd-orchestrator
+  - code-quality-guardian
+
+# ── Auto-generated constraints ───────────────────────
+constraints:
+  - 禁止发布未完成功能
+  - 禁止承诺未来功能
+  - 必须验证版本号 6 处一致
+  - 必须通过所有测试
+  - 禁止修改已发布的 tag
+
+# ── Success criteria ─────────────────────────────────
+success_criteria:
+  - 版本号在所有文件中一致
+  - GitHub Release 创建成功
+  - CHANGELOG 已更新
+  - 社区公告已发布（至少 1 个平台）
+
+# ── Mode ─────────────────────────────────────────────
+default_mode: advanced

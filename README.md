@@ -27,6 +27,26 @@
 - **🔗 Hermes-native** — Every skill leverages Hermes-specific tools: `delegate_task`, `browser`+`terminal`+`vision` coordination, persistent memory, `/curator`, `cronjob`, `webhook`.
 - **📐 Open standard** — All `SKILL.md` files follow the [Agent Skills Open Standard](https://github.com/addyosmani/agent-skills). Validated by the bundled `SkillValidator`.
 
+## 🧪 Hermes v2 Beta — Task-First Interface
+
+> ⚠️ **Beta / Experimental** — Not production-ready. v1 remains stable and supported.
+
+Hermes v2 adds a natural-language frontend: say what you want, the system handles roles, skills, and constraints automatically.
+
+```bash
+# v2 Beta — natural language
+python -m hermes_v2.cli "帮我发布项目"
+python -m hermes_v2.cli "创建一个 FastAPI 项目"
+python -m hermes_v2.cli "修复这个错误"
+
+# v1 — always available
+hermes-skill validate skills/
+```
+
+**Three modes:** Beginner (auto) · Advanced (choose persona) · Expert (pure v1). See [Hermes v2 MVP docs](docs/hermes-v2-mvp.md).
+
+**v1 is unchanged.** v2 is additive — all existing skills, CLI commands, and workflows work as before.
+
 ## 📦 Workflow Skills (8 SKILL.md)
 
 | Skill | Phase | Description | Hermes-specific |

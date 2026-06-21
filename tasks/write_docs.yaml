@@ -1,0 +1,64 @@
+# write_docs
+# User says: "写文档" / "write documentation"
+
+task_id: write_docs
+
+label:
+  zh: 编写文档
+  en: Write Documentation
+
+description:
+  zh: 分析代码 → 生成文档 → 双语输出
+  en: Analyze code → generate docs → bilingual output
+
+intent:
+  keywords_zh:
+    - 文档
+    - README
+    - 写文档
+    - 注释
+    - 说明
+    - 教程
+    - FAQ
+    - 写
+    - 帮我写
+    - 编写
+    - 撰写
+    - 生成文档
+  keywords_en:
+    - docs
+    - documentation
+    - README
+    - write docs
+    - document
+    - tutorial
+    - guide
+
+workflow:
+  - persona: Documentation Writer
+    step: 1_analyze
+    description: 分析项目结构、API、入口点
+  - persona: Documentation Writer
+    step: 2_generate
+    description: 生成文档（README、API 文档、使用指南）
+  - persona: Documentation Writer
+    step: 3_translate
+    description: 翻译为中文（如果项目支持双语）
+
+required_skills: []
+# 文档任务不强制加载特定 skill，使用项目上下文
+
+constraints:
+  - 简洁优先
+  - 代码示例必须可运行
+  - 中英双语（如果项目支持）
+  - 覆盖安装、使用、贡献三个章节
+  - 不编造不存在的功能
+
+success_criteria:
+  - README 完整（≥ 4 个章节）
+  - 所有代码示例语法正确
+  - 中文版本与英文版本内容一致
+  - 包含 Quick Start 章节
+
+default_mode: beginner

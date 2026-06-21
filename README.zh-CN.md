@@ -27,6 +27,26 @@
 - **🔗 命令体系原生** — 每个技能深度引用 Hermes 独有工具：`delegate_task`、`browser`+`terminal`+`vision` 联动、持久记忆、`/curator`、`cronjob`、`webhook`。
 - **📐 开放标准** — 全部 `SKILL.md` 文件遵循 [Agent Skills 开放标准](https://github.com/addyosmani/agent-skills)，由自带的 `SkillValidator` 保证格式合法性。
 
+## 🧪 Hermes v2 Beta — 任务优先界面
+
+> ⚠️ **Beta / 实验性功能** — 非生产就绪。v1 保持稳定可用。
+
+Hermes v2 增加自然语言前端：直接说需求，系统自动处理角色、技能和约束。
+
+```bash
+# v2 Beta — 自然语言
+python -m hermes_v2.cli "帮我发布项目"
+python -m hermes_v2.cli "创建一个 FastAPI 项目"
+python -m hermes_v2.cli "修复这个错误"
+
+# v1 — 始终可用
+hermes-skill validate skills/
+```
+
+**三种模式：** 入门（自动）· 高级（指定角色）· 专家（纯 v1）。详见 [Hermes v2 MVP 文档](docs/hermes-v2-mvp.md)。
+
+**v1 无任何改动。** v2 是纯增量——所有现有技能、CLI 命令和工作流保持不变。
+
 ## 📦 工作流技能（8 个 SKILL.md）
 
 | 技能 | 阶段 | 描述 | Hermes 专有特性 |

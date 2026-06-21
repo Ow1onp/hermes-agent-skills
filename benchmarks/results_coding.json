@@ -1,0 +1,50 @@
+{
+  "benchmark": "coding",
+  "python_version": "3.11.15",
+  "timestamp": "2026-06-21T14:31:12",
+  "results": {
+    "validate_single": [
+      {
+        "skill": "test-driven-dev",
+        "elapsed_s": 0.131
+      },
+      {
+        "skill": "requirement-analyzer",
+        "elapsed_s": 0.131
+      },
+      {
+        "skill": "spec-driven-dev",
+        "elapsed_s": 0.134
+      },
+      {
+        "skill": "persona-aware-coding",
+        "elapsed_s": 0.133
+      },
+      {
+        "skill": "skill-curator",
+        "elapsed_s": 0.132
+      },
+      {
+        "skill": "cicd-orchestrator",
+        "elapsed_s": 0.131
+      },
+      {
+        "skill": "code-quality-guardian",
+        "elapsed_s": 0.133
+      },
+      {
+        "skill": "debugger-coordinator",
+        "elapsed_s": 0.131
+      }
+    ],
+    "validate_directory": 0.138,
+    "validate_json": 0.342,
+    "create_basic": 0.132,
+    "create_advanced": 0.114,
+    "create_minimal": 0.118,
+    "list_table": 0.137,
+    "list_json": 0.141,
+    "mean_operation_s": 0.19,
+    "threshold_pass": true
+  }
+}

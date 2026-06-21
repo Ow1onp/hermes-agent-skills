@@ -1,0 +1,69 @@
+# create_project
+# User says: "创建一个项目" / "create a project"
+
+task_id: create_project
+
+label:
+  zh: 创建项目
+  en: Create Project
+
+description:
+  zh: 需求分析 → 规格设计 → 项目脚手架
+  en: Requirement analysis → spec design → project scaffold
+
+intent:
+  keywords_zh:
+    - 创建
+    - 新建
+    - 初始化
+    - 脚手架
+    - 项目
+    - 工程
+    - 应用
+    - FastAPI
+    - Django
+    - Flask
+    - React
+    - Vue
+    - Next.js
+    - 搭建
+    - 生成项目
+  keywords_en:
+    - create
+    - new
+    - init
+    - scaffold
+    - project
+    - setup
+
+workflow:
+  - persona: Project Manager
+    step: 1_analyze
+    description: 五轮结构化对话，澄清需求至 95% 清晰度
+  - persona: Project Manager
+    step: 2_spec
+    description: 生成七要素 Spec 文档
+  - persona: Project Manager
+    step: 3_scaffold
+    description: 创建项目结构、README、LICENSE、CI 配置
+
+required_skills:
+  - requirement-analyzer
+  - spec-driven-dev
+  - test-driven-dev
+
+constraints:
+  - 禁止跳过需求澄清
+  - 项目结构必须符合标准
+  - 必须包含 README + LICENSE
+  - 必须包含测试框架
+  - 必须包含 CI 配置
+
+success_criteria:
+  - 需求澄清度 ≥ 95%
+  - Spec 文档完整（7 个要素）
+  - 项目结构创建成功
+  - README 包含使用说明
+  - 至少 1 个示例测试
+
+default_mode: beginner

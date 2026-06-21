@@ -1,0 +1,29 @@
+{
+  "benchmark": "debugging",
+  "python_version": "3.11.15",
+  "timestamp": "2026-06-21T14:33:13",
+  "results": {
+    "validator_strict": {
+      "elapsed_s": 0.125
+    },
+    "soul_reader": {
+      "elapsed_s": 0.0011,
+      "profile_name": "Default Agent",
+      "traits": [
+        "neutral",
+        "professional",
+        "helpful"
+      ]
+    },
+    "evolution_analyze": {
+      "elapsed_s": 0.0,
+      "suggestion_count": 5
+    },
+    "corrupt_skill": {
+      "elapsed_s": 0.226,
+      "exit_code": 2,
+      "issues_found": 5
+    },
+    "threshold_pass": true
+  }
+}
