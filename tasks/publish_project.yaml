@@ -19,6 +19,10 @@ intent:
     - 发版
     - 发布项目
     - 部署
+    - 检查
+    - 能不能发布
+    - 能不能上线
+    - 可以发布吗
   keywords_en:
     - publish
     - release

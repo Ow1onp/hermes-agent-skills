@@ -7,8 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
 [![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
-[![Tests](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen)](tests/)
-[![Version](https://img.shields.io/badge/version-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+[![Tests](https://img.shields.io/badge/tests-220%2F220%20passing-brightgreen)](tests/)
+[![Version](https://img.shields.io/badge/version-2.0.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
 
 ---
 
@@ -29,7 +29,7 @@
 
 ## 🧪 Hermes v2 Beta — Task-First Interface
 
-> ⚠️ **Beta / Experimental** — Not production-ready. v1 remains stable and supported.
+> v1.1.0 remains stable and supported alongside v2.
 
 Hermes v2 adds a natural-language frontend: say what you want, the system handles roles, skills, and constraints automatically.
 

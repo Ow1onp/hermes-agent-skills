@@ -1,0 +1,58 @@
+# install_project
+# User says: "帮我安装项目" / "重新安装" / "setup this project"
+
+task_id: install_project
+
+label:
+  zh: 安装项目
+  en: Install Project
+
+description:
+  zh: 自动检测项目类型 → 安装依赖 → 验证环境 → 运行测试
+  en: Auto-detect project → install deps → verify env → run tests
+
+intent:
+  keywords_zh:
+    - 安装
+    - 重新安装
+    - 重装
+    - 装
+    - 配置环境
+    - 初始化
+    - setup
+    - 跑起来
+    - 环境
+  keywords_en:
+    - install
+    - reinstall
+    - setup
+    - configure
+    - bootstrap
+    - init
+
+workflow:
+  - persona: DevOps SRE
+    step: 1_detect
+    description: 检测项目类型（Python/Node/UE等）、读取配置文件
+  - persona: DevOps SRE
+    step: 2_install
+    description: 安装依赖（pip/npm/等）、配置虚拟环境
+  - persona: DevOps SRE
+    step: 3_verify
+    description: 验证安装：运行测试、检查关键命令可用
+
+required_skills: []
+
+constraints:
+  - 必须先检测项目类型再安装
+  - 禁止覆盖已有配置
+  - 安装失败必须报告具体错误
+  - 使用虚拟环境，不污染系统 Python
+
+success_criteria:
+  - 所有依赖安装成功
+  - 测试可以运行
+  - 关键 CLI 命令可用
+  - 无 import 错误
+
+default_mode: beginner

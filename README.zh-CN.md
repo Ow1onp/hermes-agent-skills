@@ -7,8 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
 [![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
-[![Tests](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen)](tests/)
-[![Version](https://img.shields.io/badge/version-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+[![Tests](https://img.shields.io/badge/tests-220%2F220%20passing-brightgreen)](tests/)
+[![Version](https://img.shields.io/badge/version-2.0.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
 
 ---
 
@@ -29,7 +29,7 @@
 
 ## 🧪 Hermes v2 Beta — 任务优先界面
 
-> ⚠️ **Beta / 实验性功能** — 非生产就绪。v1 保持稳定可用。
+> v1.1.0 与 v2 并行可用，保持稳定。
 
 Hermes v2 增加自然语言前端：直接说需求，系统自动处理角色、技能和约束。
 

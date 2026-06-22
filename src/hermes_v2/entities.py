@@ -37,6 +37,9 @@ _TECHNOLOGIES = {
     "pytorch": "PyTorch", "tensorflow": "TensorFlow",
     # Infrastructure
     "docker": "Docker", "kubernetes": "Kubernetes", "k8s": "Kubernetes",
+    # Game engines
+    "unreal": "Unreal Engine", "ue5": "Unreal Engine 5", "ue4": "Unreal Engine 4",
+    "unity": "Unity", "godot": "Godot",
 }
 
 _PROJECT_TYPES = {
@@ -46,6 +49,8 @@ _PROJECT_TYPES = {
     "plugin": "Plugin", "microservice": "Microservice",
     "fullstack": "Fullstack App", "full-stack": "Fullstack App",
     "backend": "Backend Service", "frontend": "Frontend App",
+    "插件": "Plugin", "plugin": "Plugin",
+    "示例": "Example Project",
 }
 
 _DOC_TYPES = {
