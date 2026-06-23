@@ -150,11 +150,17 @@ class IntentRouter:
         # ── Version pattern bonus (0–25) ──
         if re.search(r'v?\d+\.\d+(?:\.\d+)?', text):
             if entities.version and task.task_id == "release_version":
-                raw_score += 25.0     # Strong — exact version match
+                # Cap version bonus when technology/creation context present
+                vb = 25.0
+                if entities.technology and any(
+                    kw in text for kw in ["创建", "项目", "create", "project", "做", "写", "弄"]
+                ):
+                    vb = 8.0  # Reduce — creation intent is stronger
+                raw_score += vb
             elif task.task_id == "release_version":
-                raw_score += 15.0     # Good — version pattern, no exact
+                raw_score += 15.0
             elif task.task_id == "publish_project":
-                raw_score += 8.0      # Weaker — could be publish too
+                raw_score += 8.0
 
         # ── File extension bonus (0–5) ──
         if entities.file_path:
