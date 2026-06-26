@@ -8,7 +8,8 @@
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
 [![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
 [![Tests](https://img.shields.io/badge/tests-220%2F220%20passing-brightgreen)](tests/)
-[![Version](https://img.shields.io/badge/version-2.0.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+[![Version](https://img.shields.io/badge/v1-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
+[![v2](https://img.shields.io/badge/v2-2.0.0-blue)](docs/hermes-v2-mvp.md)
 
 ---
 

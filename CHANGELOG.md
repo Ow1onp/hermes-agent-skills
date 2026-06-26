@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.0] — 2026-06-20
+
+### Added
+- **Hermes v2 Task-First Interface**: Natural-language task execution. Say "帮我发布项目" instead of writing constraint prompts.
+- **8 task types**: publish_project, fix_bug, create_project, write_docs, review_code, release_version, install_project, analyze_results.
+- **3 user modes**: Beginner (auto), Advanced (choose persona), Expert (pure v1 constraint prompts).
+- **Entity Extraction**: Auto-detects technology (FastAPI, Django, Unreal), file paths, versions, doc types from user input.
+- **Confidence Calibration**: Every routing has a confidence score. Below 40% triggers clarification.
+- **Layer 8 Result Evaluator**: Validates execution plans for completeness, safety, and entity preservation.
+- **CI Install Gate**: Smoke test verifies wheel build + install + imports + v1/v2 CLI on every push.
+
+### Changed
+- README badges show both v1 (1.1.0) and v2 (2.0.0) versions.
+- `pyproject.toml` now includes `hermes_v2` package.
+
+### Fixed
+- Entity drop: user-specified technologies now preserved in constraint prompts.
+- Version bonus overpowering creation intent: capped when technology context present.
+- Synonym routing: added 接口/后端/服务/API keywords to create_project.
+
+---
+
 ## [1.1.0] — 2026-06-16
 
 ### Added

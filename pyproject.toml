@@ -51,7 +51,7 @@ Repository = "https://github.com/Ow1onp/hermes-agent-skills"
 Issues = "https://github.com/Ow1onp/hermes-agent-skills/issues"
 
 [tool.setuptools]
-packages = ["hermes_agent_skills", "cli"]
+packages = ["hermes_agent_skills", "cli", "hermes_v2"]
 package-dir = {"" = "src"}
 
 [tool.pytest.ini_options]
