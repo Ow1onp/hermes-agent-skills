@@ -48,3 +48,17 @@ Thumbs.db
 # Linting
 .ruff_cache/
 .mypy_cache/
+
+# Local execution records / private project memory
+Desktop-Knowledge-backup/
+Knowledge/
+zhixing/
+*.duplicate
+full-summary.md
+v2-*.txt
+*项目总结*.txt
+*summary*.md
+
+# Local agent execution artifacts
+hermes-agent-skills-execution-*.json
+hermes-agent-skills-public-audit-*.json
