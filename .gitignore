@@ -62,3 +62,4 @@ v2-*.txt
 # Local agent execution artifacts
 hermes-agent-skills-execution-*.json
 hermes-agent-skills-public-audit-*.json
+archive/internal/
