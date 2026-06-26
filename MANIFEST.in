@@ -1,0 +1,2 @@
+include src/hermes_v2/tasks/*.yaml
+include tasks/*.yaml

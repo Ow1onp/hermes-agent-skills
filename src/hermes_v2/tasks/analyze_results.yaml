@@ -1,0 +1,60 @@
+# analyze_results
+# User says: "帮我分析测试结果" / "下一步该做什么"
+
+task_id: analyze_results
+
+label:
+  zh: 分析结果
+  en: Analyze Results
+
+description:
+  zh: 读取测试/日志输出 → 分类问题 → 生成优先级行动清单
+  en: Read test/log output → classify issues → generate prioritized action list
+
+intent:
+  keywords_zh:
+    - 分析
+    - 测试结果
+    - 下一步
+    - 该做什么
+    - 检查结果
+    - 跑完
+    - 结果
+    - 报告
+    - 总结
+  keywords_en:
+    - analyze
+    - results
+    - next step
+    - what next
+    - test results
+    - summary
+    - findings
+
+workflow:
+  - persona: Code Reviewer
+    step: 1_read
+    description: 读取测试输出、日志、错误信息
+  - persona: Code Reviewer
+    step: 2_classify
+    description: 分类问题：Critical/Major/Minor/Info
+  - persona: Code Reviewer
+    step: 3_prioritize
+    description: 生成优先级行动清单，标注阻塞项
+
+required_skills:
+  - code-quality-guardian
+
+constraints:
+  - 必须先读取实际输出再分析
+  - 禁止编造不存在的错误
+  - 优先级：安全 > 功能 > 性能 > 风格
+  - 每个问题必须附修复建议
+
+success_criteria:
+  - 所有错误已分类
+  - 优先级清单已生成
+  - 阻塞项已标注
+  - 每个问题有修复建议
+
+default_mode: beginner

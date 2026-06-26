@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional
 
-TASKS_DIR = Path(__file__).parent.parent.parent / "tasks"
+TASKS_DIR = Path(__file__).parent / "tasks"  # shipped with package
 
 
 @dataclass
@@ -45,6 +45,11 @@ class TaskRegistry:
     """Loads and queries task definitions."""
 
     def __init__(self, tasks_dir: Optional[Path] = None):
+        if tasks_dir is None and not TASKS_DIR.exists():
+            # Fallback for dev mode: look in repo root
+            dev_tasks = Path(__file__).parent.parent.parent / "tasks"
+            if dev_tasks.exists():
+                tasks_dir = dev_tasks
         self._dir = tasks_dir or TASKS_DIR
         self._tasks: Dict[str, TaskDefinition] = {}
         self._load_all()

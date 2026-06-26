@@ -1,0 +1,59 @@
+# review_code
+# User says: "检查代码" / "review this code"
+
+task_id: review_code
+
+label:
+  zh: 代码审查
+  en: Code Review
+
+description:
+  zh: 六轴质量门禁：安全 → 复杂度 → 风格 → 覆盖 → 文档 → 依赖
+  en: "Six-axis quality gate: security → complexity → style → coverage → docs → deps"
+
+intent:
+  keywords_zh:
+    - 检查
+    - 审查
+    - review
+    - 代码质量
+    - 代码检查
+    - 质量
+    - 评审
+  keywords_en:
+    - review
+    - check
+    - audit
+    - quality
+    - inspect
+    - code review
+    - code
+    - this code
+
+workflow:
+  - persona: Code Reviewer
+    step: 1_scan
+    description: 六轴扫描：安全、复杂度、风格、覆盖、文档、依赖
+  - persona: Code Reviewer
+    step: 2_report
+    description: 生成审查报告，每个问题附修复建议
+  - persona: Code Reviewer
+    step: 3_autofix
+    description: 自动修复可修复的问题（patch）
+
+required_skills:
+  - code-quality-guardian
+
+constraints:
+  - 安全 > 性能 > 风格
+  - 每个问题必须附修复建议
+  - 不阻塞非阻塞性问题
+  - 自动修复仅限安全修复
+
+success_criteria:
+  - 六轴全部覆盖
+  - 每个 ERROR 级别问题有修复建议
+  - 自动修复后无新问题引入
+  - 审查报告可读、可操作
+
+default_mode: advanced

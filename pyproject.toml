@@ -54,6 +54,7 @@ Issues = "https://github.com/Ow1onp/hermes-agent-skills/issues"
 packages = ["hermes_agent_skills", "cli", "hermes_v2"]
 package-dir = {"" = "src"}
 
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]

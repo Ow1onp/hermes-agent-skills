@@ -1,0 +1,68 @@
+# release_version
+# User says: "发布 v1.2.0" / "release version 1.2.0"
+
+task_id: release_version
+
+label:
+  zh: 版本发布
+  en: Release Version
+
+description:
+  zh: 版本号同步 → 测试验证 → CHANGELOG → Git tag → GitHub Release
+  en: Bump version → test → CHANGELOG → tag → GitHub Release
+
+intent:
+  keywords_zh:
+    - 发
+    - 版
+    - 版本
+    - release
+    - tag
+    - 打
+    - bump
+    - 发布版本
+    - 发布 v
+    - 新版本
+    - 发新版本
+    - v
+  keywords_en:
+    - release
+    - version
+    - bump
+    - tag
+    - cut
+    - ship
+
+workflow:
+  - persona: Release Manager
+    step: 1_bump
+    description: 同步版本号到所有 6 个位置
+  - persona: Release Manager
+    step: 2_validate
+    description: 跑测试、lint、skill validate
+  - persona: Release Manager
+    step: 3_changelog
+    description: 更新 CHANGELOG.md（keepachangelog.com 格式）
+  - persona: Release Manager
+    step: 4_tag
+    description: git tag + push + GitHub Release 创建
+
+required_skills:
+  - cicd-orchestrator
+  - code-quality-guardian
+
+constraints:
+  - 禁止跳过测试
+  - 版本号必须在 6 处同步
+  - CHANGELOG 必须符合 keepachangelog.com
+  - 禁止 force push tag
+  - 禁止发布未通过 CI 的版本
+
+success_criteria:
+  - 版本号 6/6 一致
+  - 所有测试通过
+  - CHANGELOG 已更新
+  - Git tag 已创建并推送
+  - GitHub Release 已创建
+
+default_mode: advanced
