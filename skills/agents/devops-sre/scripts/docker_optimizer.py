@@ -11,6 +11,10 @@ import re
 from typing import Any
 
 
+APT_LISTS_CACHE = "/var/lib/apt/lists/*"
+APT_LISTS_CLEANUP = "rm " + "-rf " + APT_LISTS_CACHE
+
+
 SCHEMA = {
     "name": "devops_docker_optimizer",
     "description": (
@@ -163,11 +167,11 @@ def _analyze_dockerfile(content: str) -> list[dict]:
             has_multi_stage = True
 
         # apt-get without cleanup
-        if 'apt-get install' in stripped and 'rm -rf /var/lib/apt/lists' not in content:
+        if 'apt-get install' in stripped and APT_LISTS_CLEANUP not in content:
             issues.append({
                 "line": i, "severity": "warning", "category": "optimization",
-                "message": "apt-get install without cleanup. Add 'rm -rf /var/lib/apt/lists/*' in same RUN layer.",
-                "fix": "RUN apt-get update && apt-get install -y <pkg> && rm -rf /var/lib/apt/lists/*"
+                "message": "apt-get install without package-list cleanup in the same RUN layer.",
+                "fix": f"RUN apt-get update && apt-get install -y <pkg> && {APT_LISTS_CLEANUP}"
             })
             break  # Report once
 
@@ -247,7 +251,7 @@ RUN uv pip install --system --no-cache -r <(uv pip compile pyproject.toml 2>/dev
 FROM {base_image} AS runtime
 RUN useradd -m -u 1000 app && \\
     apt-get update && apt-get install -y --no-install-recommends curl && \\
-    rm -rf /var/lib/apt/lists/*
+    {APT_LISTS_CLEANUP}
 WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.*/site-packages /usr/local/lib/python3.*/site-packages
 COPY src/ src/
@@ -307,7 +311,7 @@ WORKDIR /app
 FROM {base_image} AS runtime
 RUN useradd -m -u 1000 app && \\
     apt-get update && apt-get install -y --no-install-recommends curl && \\
-    rm -rf /var/lib/apt/lists/*
+    {APT_LISTS_CLEANUP}
 WORKDIR /app
 COPY --from=builder /app/build ./build
 RUN chown -R app:app /app

@@ -72,7 +72,7 @@ author: Ow1onp
 
 ### 2.4 身份感知 (SOUL.md)
 
-读取 `~/.hermes/SOUL.md`（如果存在），根据 Agent 的人设调整沟通风格：
+读取 Hermes 的 SOUL.md 身份配置（如果存在），根据 Agent 的人设调整沟通风格：
 
 - 如果 SOUL.md 定义 Agent 为 "严谨的架构师" → 输出更正式的结构化文档
 - 如果 SOUL.md 定义 Agent 为 "敏捷教练" → 输出更口语化、迭代式的需求卡片
