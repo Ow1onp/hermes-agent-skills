@@ -14,8 +14,8 @@ Recognizes:
 Missing fields are None.
 """
 import re
-from dataclasses import dataclass, field
-from typing import Optional, List
+from dataclasses import dataclass
+from typing import Optional
 
 
 # ── Knowledge bases ────────────────────────────────────────────
@@ -49,7 +49,7 @@ _PROJECT_TYPES = {
     "plugin": "Plugin", "microservice": "Microservice",
     "fullstack": "Fullstack App", "full-stack": "Fullstack App",
     "backend": "Backend Service", "frontend": "Frontend App",
-    "插件": "Plugin", "plugin": "Plugin",
+    "插件": "Plugin",
     "示例": "Example Project",
 }
 

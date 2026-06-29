@@ -1,7 +1,11 @@
 """
 User Scenario: Skill Authoring — full create → validate → evolve cycle.
 """
-import subprocess, sys, tempfile, time, json
+import subprocess
+import sys
+import tempfile
+import time
+import json
 from pathlib import Path
 
 REPO = Path("E:/Projects/hermes-agent-skills")
@@ -55,7 +59,7 @@ def main():
         try:
             data = json.loads(r.stdout)
             count = len(data) if isinstance(data, list) else 1
-        except:
+        except json.JSONDecodeError:
             count = "?"
         results["validate_json"] = {"elapsed_s": elapsed, "skills": count}
         print(f"  ✓ {elapsed:.3f}s  ({count} skills)")

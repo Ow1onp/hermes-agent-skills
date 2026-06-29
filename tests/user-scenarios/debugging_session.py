@@ -1,7 +1,11 @@
 """
 User Scenario: Debugging Session — corrupt skill detection → fix → re-validate.
 """
-import subprocess, sys, time, json, tempfile
+import subprocess
+import sys
+import time
+import json
+import tempfile
 from pathlib import Path
 
 REPO = Path("E:/Projects/hermes-agent-skills")
@@ -41,7 +45,7 @@ Multiple violations of the standard.
         try:
             data = json.loads(r.stdout)
             issues_found = len(data.get("issues", []))
-        except:
+        except json.JSONDecodeError:
             pass
         results["corrupt_detect"] = {"elapsed_s": elapsed, "issues": issues_found}
         print(f"  Issues: {issues_found}  {elapsed:.3f}s")

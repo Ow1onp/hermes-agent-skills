@@ -11,7 +11,7 @@ Checks:
   5. Beginner mode guard (no role/skill/constraint engineering exposed to user)
 """
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List
 
 from .orchestrator import ExecutionPlan
 

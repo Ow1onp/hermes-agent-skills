@@ -1,7 +1,10 @@
 """
 User Scenario: Release Engineering — pre-release validation checks.
 """
-import subprocess, sys, time, json, re
+import subprocess
+import sys
+import time
+import re
 from pathlib import Path
 
 REPO = Path("E:/Projects/hermes-agent-skills")

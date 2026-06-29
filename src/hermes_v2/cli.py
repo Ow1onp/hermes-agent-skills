@@ -18,6 +18,18 @@ if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
 
+def _prefer_utf8_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
+_prefer_utf8_stdio()
+
+
 def main():
     import argparse
 
@@ -87,7 +99,7 @@ def main():
     # Show result
     if result.mode == Mode.EXPERT:
         print(f"[{result.mode.value.upper()}] Raw constraint prompt detected.")
-        print(f"  Bypassing NL pipeline. Executing directly.\n")
+        print("  Bypassing NL pipeline. Executing directly.\n")
         if args.verbose:
             print("─" * 40)
             print(result.raw_prompt)
@@ -134,7 +146,7 @@ def main():
             print(f"  ✓ {c}")
 
     if args.dry_run:
-        print(f"\n(Dry run — plan shown, not executed)")
+        print("\n(Dry run — plan shown, not executed)")
         return
 
     print(f"\n→ Executing with {plan.step_count} step(s)...")

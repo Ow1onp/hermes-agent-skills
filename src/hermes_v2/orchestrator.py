@@ -8,7 +8,7 @@ v2.1: Passes ExtractedEntities through to Constraint Engine.
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-from .task_registry import TaskRegistry, TaskDefinition, WorkflowStep
+from .task_registry import TaskRegistry, WorkflowStep
 from .router import RoutingResult
 from .entities import ExtractedEntities
 from .constraints import ConstraintEngine

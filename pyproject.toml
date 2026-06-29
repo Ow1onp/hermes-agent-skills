@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68.0", "wheel"]
+requires = ["setuptools>=77.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "hermes-agent-skills"
 version = "1.1.0"
 description = "Production-grade skills for Hermes Agent — self-evolving, persona-aware, slash-command native"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Ow1onp", email = "Ow1onp@Outlook.com"},
 ]
@@ -21,7 +21,6 @@ keywords = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -51,8 +50,15 @@ Repository = "https://github.com/Ow1onp/hermes-agent-skills"
 Issues = "https://github.com/Ow1onp/hermes-agent-skills/issues"
 
 [tool.setuptools]
-packages = ["hermes_agent_skills", "cli", "hermes_v2"]
 package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["hermes_agent_skills*", "cli*", "hermes_v2*"]
+
+[tool.setuptools.package-data]
+hermes_v2 = ["tasks/*.yaml"]
 
 
 [tool.pytest.ini_options]

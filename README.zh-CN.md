@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
 [![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
-[![Tests](https://img.shields.io/badge/tests-220%2F220%20passing-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/tests-224%2F224%20passing-brightgreen)](tests/)
 [![Version](https://img.shields.io/badge/v1-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
 [![v2](https://img.shields.io/badge/v2-2.0.0-blue)](docs/hermes-v2-mvp.md)
 
@@ -67,8 +67,8 @@ hermes-skill validate skills/
 
 | Agent | 领域 | 技能 | 安装 |
 |-------|------|------|------|
-| **Python Pro** | Python 3.11+ 开发 | 代码审查 · 性能分析 · 测试生成 · 脚手架 · 类型检查 | `cp -r agents/python-pro ~/.hermes/skills/` |
-| **DevOps SRE** | 基础设施 & SRE | CI/CD 流水线 · Docker 优化 · K8s 部署 · 日志分析 | `cp -r agents/devops-sre ~/.hermes/skills/` |
+| **Python Pro** | Python 3.11+ 开发 | 代码审查 · 性能分析 · 测试生成 · 脚手架 · 类型检查 | `hermes skills install python-pro` |
+| **DevOps SRE** | 基础设施 & SRE | CI/CD 流水线 · Docker 优化 · K8s 部署 · 日志分析 | `hermes skills install devops-sre` |
 
 领域 Agent 使用 `SCHEMA` + `handler()` 模式，直接兼容 Hermes 的工具调度系统。技能仅在用户意图匹配时激活——不污染对话上下文。
 
@@ -79,16 +79,21 @@ hermes-skill validate skills/
 hermes skills tap add Ow1onp/hermes-agent-skills
 hermes skills browse
 hermes skills install requirement-analyzer
-
-# 或克隆到本地
-git clone https://github.com/Ow1onp/hermes-agent-skills.git
+hermes skills install python-pro
+hermes skills install devops-sre
 
 # 加载工作流技能
 /skill requirement-analyzer
 
 # 加载领域 Agent
 /skill python-pro
+/skill devops-sre
 ```
+
+`hermes skills tap add Ow1onp/hermes-agent-skills` 会让 Hermes 扫描仓库的
+`skills/` 树。工作流技能位于 `define/`、`build/` 等阶段目录；领域 Agent
+通过 `skills/agents/` 下的 wrapper 暴露给 tap。顶层 `agents/` 仍保留为
+persona、memory 和 handler 源包；手动复制到 `~/.hermes/skills/` 仅作为本地调试 fallback。
 
 ## 🔗 Hermes 深度集成
 
@@ -110,9 +115,10 @@ print(profile.get_code_prompt_hint())
 hermes-agent-skills/
 ├── skills/                  # SKILL.md 工作流技能（Agent Skills 开放标准）
 │   ├── define/ · build/ · verify/ · ship/ · evolve/
+│   └── agents/              # Hermes 可正式安装的领域 Agent wrapper
 ├── agents/                  # 领域 Agent（来自 HermesHub）
-│   ├── python-pro/          # persona.md + memory.md + 5 技能
-│   └── devops-sre/          # persona.md + memory.md + 4 技能
+│   ├── python-pro/          # SKILL.md + persona.md + memory.md + 5 handlers
+│   └── devops-sre/          # SKILL.md + persona.md + memory.md + 4 handlers
 ├── src/hermes_agent_skills/ # Python 核心库
 │   ├── validator.py         # SKILL.md 验证器
 │   ├── evolution.py         # 自进化引擎

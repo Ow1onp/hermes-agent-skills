@@ -14,8 +14,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from hermes_v2.task_registry import TaskRegistry
-from hermes_v2.router import IntentRouter, RoutingResult
-from hermes_v2.orchestrator import TaskOrchestrator, ExecutionPlan
+from hermes_v2.router import RoutingResult
+from hermes_v2.orchestrator import TaskOrchestrator
 from hermes_v2.constraints import ConstraintEngine
 
 

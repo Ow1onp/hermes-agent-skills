@@ -25,6 +25,18 @@ _SRC_DIR = Path(__file__).parent.parent
 if _SRC_DIR.exists():
     sys.path.insert(0, str(_SRC_DIR))
 
+
+def _prefer_utf8_stdio() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8")
+            except Exception:
+                pass
+
+
+_prefer_utf8_stdio()
+
 from . import __version__  # noqa: E402 — sys.path must be set before import
 
 

@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Hermes Compatible](https://img.shields.io/badge/hermes--agent-compatible-8A2BE2)](https://github.com/NousResearch/hermes-agent)
 [![Agent Skills Standard](https://img.shields.io/badge/standard-agent--skills-orange)](https://github.com/addyosmani/agent-skills)
-[![Tests](https://img.shields.io/badge/tests-220%2F220%20passing-brightgreen)](tests/)
+[![Tests](https://img.shields.io/badge/tests-224%2F224%20passing-brightgreen)](tests/)
 [![Version](https://img.shields.io/badge/v1-1.1.0-informational)](https://github.com/Ow1onp/hermes-agent-skills/releases)
 [![v2](https://img.shields.io/badge/v2-2.0.0-blue)](docs/hermes-v2-mvp.md)
 
@@ -67,8 +67,8 @@ Plug-and-play specialist agents — each is a self-contained bundle of persona, 
 
 | Agent | Domain | Skills | Install |
 |-------|--------|--------|---------|
-| **Python Pro** | Python 3.11+ | Code Review · Performance Profiling · Test Generation · Scaffolding · Type Checking | `cp -r agents/python-pro ~/.hermes/skills/` |
-| **DevOps SRE** | Infrastructure | CI/CD Pipeline · Docker Optimization · K8s Deploy · Log Analysis | `cp -r agents/devops-sre ~/.hermes/skills/` |
+| **Python Pro** | Python 3.11+ | Code Review · Performance Profiling · Test Generation · Scaffolding · Type Checking | `hermes skills install python-pro` |
+| **DevOps SRE** | Infrastructure | CI/CD Pipeline · Docker Optimization · K8s Deploy · Log Analysis | `hermes skills install devops-sre` |
 
 Domain agents use the `SCHEMA` + `handler()` pattern directly compatible with Hermes's tool dispatch system. Skills activate only when your intent matches — no context pollution.
 
@@ -79,16 +79,23 @@ Domain agents use the `SCHEMA` + `handler()` pattern directly compatible with He
 hermes skills tap add Ow1onp/hermes-agent-skills
 hermes skills browse
 hermes skills install requirement-analyzer
-
-# Or clone locally
-git clone https://github.com/Ow1onp/hermes-agent-skills.git
+hermes skills install python-pro
+hermes skills install devops-sre
 
 # Load a workflow skill
 /skill requirement-analyzer
 
-# Load a domain agent
+# Load domain agents
 /skill python-pro
+/skill devops-sre
 ```
+
+`hermes skills tap add Ow1onp/hermes-agent-skills` points Hermes at the repo's
+`skills/` tree. Workflow skills live under phase folders such as `define/` and
+`build/`; domain agents are exposed through installable wrappers under
+`skills/agents/`. The top-level `agents/` tree remains the source bundle for
+agent persona, memory, and handler code. Manual copying to `~/.hermes/skills/`
+is only a local debugging fallback.
 
 ## 🔗 Hermes Integration
 
@@ -110,9 +117,10 @@ print(profile.get_code_prompt_hint())
 hermes-agent-skills/
 ├── skills/                  # SKILL.md workflow skills (Agent Skills standard)
 │   ├── define/ · build/ · verify/ · ship/ · evolve/
+│   └── agents/              # Hermes-installable domain agent wrappers
 ├── agents/                  # Domain agents (from HermesHub)
-│   ├── python-pro/          # persona.md + memory.md + 5 skills
-│   └── devops-sre/          # persona.md + memory.md + 4 skills
+│   ├── python-pro/          # SKILL.md + persona.md + memory.md + 5 handlers
+│   └── devops-sre/          # SKILL.md + persona.md + memory.md + 4 handlers
 ├── src/hermes_agent_skills/ # Python library
 │   ├── validator.py         # SKILL.md validator
 │   ├── evolution.py         # Self-evolution engine
