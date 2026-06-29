@@ -15,8 +15,9 @@ metadata:
 ## Overview
 
 Python Pro is a Hermes domain agent packaged as an installable skill. It is
-available through the repository tap with `hermes skills install python-pro`
-and can be loaded with `/skill python-pro`.
+available through the repository tap with
+`hermes skills install Ow1onp/hermes-agent-skills/skills/agents/python-pro` and
+can be loaded with `/skill python-pro`.
 
 Use `references/persona.md` for behavior and `references/memory.md` for
 project-independent constraints.

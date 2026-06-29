@@ -15,8 +15,9 @@ metadata:
 ## Overview
 
 DevOps SRE is a Hermes domain agent packaged as an installable skill. It is
-available through the repository tap with `hermes skills install devops-sre`
-and can be loaded with `/skill devops-sre`.
+available through the repository tap with
+`hermes skills install Ow1onp/hermes-agent-skills/skills/agents/devops-sre` and
+can be loaded with `/skill devops-sre`.
 
 Use `references/persona.md` for behavior and `references/memory.md` for
 operational constraints.

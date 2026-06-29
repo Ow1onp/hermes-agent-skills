@@ -67,8 +67,8 @@ Plug-and-play specialist agents — each is a self-contained bundle of persona, 
 
 | Agent | Domain | Skills | Install |
 |-------|--------|--------|---------|
-| **Python Pro** | Python 3.11+ | Code Review · Performance Profiling · Test Generation · Scaffolding · Type Checking | `hermes skills install python-pro` |
-| **DevOps SRE** | Infrastructure | CI/CD Pipeline · Docker Optimization · K8s Deploy · Log Analysis | `hermes skills install devops-sre` |
+| **Python Pro** | Python 3.11+ | Code Review · Performance Profiling · Test Generation · Scaffolding · Type Checking | `hermes skills install Ow1onp/hermes-agent-skills/skills/agents/python-pro` |
+| **DevOps SRE** | Infrastructure | CI/CD Pipeline · Docker Optimization · K8s Deploy · Log Analysis | `hermes skills install Ow1onp/hermes-agent-skills/skills/agents/devops-sre` |
 
 Domain agents use the `SCHEMA` + `handler()` pattern directly compatible with Hermes's tool dispatch system. Skills activate only when your intent matches — no context pollution.
 
@@ -78,9 +78,9 @@ Domain agents use the `SCHEMA` + `handler()` pattern directly compatible with He
 # Recommended: install via hermes skills tap
 hermes skills tap add Ow1onp/hermes-agent-skills
 hermes skills browse
-hermes skills install requirement-analyzer
-hermes skills install python-pro
-hermes skills install devops-sre
+hermes skills install Ow1onp/hermes-agent-skills/skills/define/requirement-analyzer
+hermes skills install Ow1onp/hermes-agent-skills/skills/agents/python-pro
+hermes skills install Ow1onp/hermes-agent-skills/skills/agents/devops-sre
 
 # Load a workflow skill
 /skill requirement-analyzer
@@ -96,6 +96,10 @@ hermes skills install devops-sre
 `skills/agents/`. The top-level `agents/` tree remains the source bundle for
 agent persona, memory, and handler code. Manual copying to `~/.hermes/skills/`
 is only a local debugging fallback.
+
+Short-name installs such as `hermes skills install python-pro` may work once
+Hermes's registry/index resolver has refreshed, but the full GitHub identifiers
+above are the deterministic install path.
 
 ## 🔗 Hermes Integration
 

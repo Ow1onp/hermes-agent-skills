@@ -67,8 +67,8 @@ hermes-skill validate skills/
 
 | Agent | 领域 | 技能 | 安装 |
 |-------|------|------|------|
-| **Python Pro** | Python 3.11+ 开发 | 代码审查 · 性能分析 · 测试生成 · 脚手架 · 类型检查 | `hermes skills install python-pro` |
-| **DevOps SRE** | 基础设施 & SRE | CI/CD 流水线 · Docker 优化 · K8s 部署 · 日志分析 | `hermes skills install devops-sre` |
+| **Python Pro** | Python 3.11+ 开发 | 代码审查 · 性能分析 · 测试生成 · 脚手架 · 类型检查 | `hermes skills install Ow1onp/hermes-agent-skills/skills/agents/python-pro` |
+| **DevOps SRE** | 基础设施 & SRE | CI/CD 流水线 · Docker 优化 · K8s 部署 · 日志分析 | `hermes skills install Ow1onp/hermes-agent-skills/skills/agents/devops-sre` |
 
 领域 Agent 使用 `SCHEMA` + `handler()` 模式，直接兼容 Hermes 的工具调度系统。技能仅在用户意图匹配时激活——不污染对话上下文。
 
@@ -78,9 +78,9 @@ hermes-skill validate skills/
 # 推荐：通过 hermes skills tap 安装
 hermes skills tap add Ow1onp/hermes-agent-skills
 hermes skills browse
-hermes skills install requirement-analyzer
-hermes skills install python-pro
-hermes skills install devops-sre
+hermes skills install Ow1onp/hermes-agent-skills/skills/define/requirement-analyzer
+hermes skills install Ow1onp/hermes-agent-skills/skills/agents/python-pro
+hermes skills install Ow1onp/hermes-agent-skills/skills/agents/devops-sre
 
 # 加载工作流技能
 /skill requirement-analyzer
@@ -94,6 +94,9 @@ hermes skills install devops-sre
 `skills/` 树。工作流技能位于 `define/`、`build/` 等阶段目录；领域 Agent
 通过 `skills/agents/` 下的 wrapper 暴露给 tap。顶层 `agents/` 仍保留为
 persona、memory 和 handler 源包；手动复制到 `~/.hermes/skills/` 仅作为本地调试 fallback。
+
+`hermes skills install python-pro` 这类短名安装会依赖 Hermes registry/index
+刷新与短名解析；上面的完整 GitHub identifier 是确定可复现的正式安装路径。
 
 ## 🔗 Hermes 深度集成
 
